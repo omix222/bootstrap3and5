@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 3 → 5 移行学習ガイド</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <style>
+    body { background: #f8f9fa; }
+    .hero {
+      background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+      color: #fff;
+      padding: 60px 0 40px;
+      margin-bottom: 40px;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 800; }
+    .hero .badge-version {
+      font-size: 0.75rem; padding: 4px 10px;
+      border-radius: 20px; margin: 0 4px;
+    }
+    .bs3-badge { background: #fd7e14; }
+    .bs5-badge { background: #198754; }
+    .arrow { font-size: 1.5rem; vertical-align: middle; margin: 0 8px; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <h1>Bootstrap 移行学習ガイド</h1>
+    <p class="mb-3">
+      <span class="badge-version badge bs3-badge">Bootstrap 3</span>
+      <span class="arrow">→</span>
+      <span class="badge-version badge bs5-badge">Bootstrap 5.3</span>
+    </p>
+    <p class="mb-0 opacity-75">
+      jQuery不要・グリッド刷新・クラス名変更など、主要な変更点を左右比較で学べます。
+    </p>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="note-box">
+        <strong>このガイドの使い方：</strong>
+        各レッスンをクリックすると、Bootstrap 3 のコードと Bootstrap 5 のコードを<strong>左右に並べて比較</strong>できます。
+        実際に動作するサンプルでクラス名の違いを確認しましょう。
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <a href="lesson1/index.html" class="lesson-card">
+        <div class="lesson-num">01</div>
+        <h3>グリッドシステム</h3>
+        <p>col-xs 廃止・新ブレークポイント（xxl）・オフセット・Auto-layout Columns</p>
+        <div>
+          <span class="tag">col-xs → col</span>
+          <span class="tag">offset</span>
+          <span class="tag">xxl追加</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson2/index.html" class="lesson-card">
+        <div class="lesson-num">02</div>
+        <h3>ナビゲーションバー</h3>
+        <p>data-toggle → data-bs-toggle・navbar-default 廃止・カラーモード</p>
+        <div>
+          <span class="tag">data-bs-*</span>
+          <span class="tag">navbar-expand</span>
+          <span class="tag">offcanvas</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson3/index.html" class="lesson-card">
+        <div class="lesson-num">03</div>
+        <h3>カード（panel / well / thumbnail 廃止）</h3>
+        <p>BS3 の panel・well・thumbnail がすべて card に統合された</p>
+        <div>
+          <span class="tag">panel → card</span>
+          <span class="tag">well → card</span>
+          <span class="tag">thumbnail → card</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson4/index.html" class="lesson-card">
+        <div class="lesson-num">04</div>
+        <h3>フォーム</h3>
+        <p>form-group 廃止・mb-3 へ・フローティングラベル・バリデーションスタイル</p>
+        <div>
+          <span class="tag">form-group廃止</span>
+          <span class="tag">floating label</span>
+          <span class="tag">form-control</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson5/index.html" class="lesson-card">
+        <div class="lesson-num">05</div>
+        <h3>JavaScript / jQuery 不要化</h3>
+        <p>Modal・Collapse・Tooltip が jQuery なしで動作する仕組みと data-bs-* 属性</p>
+        <div>
+          <span class="tag">jQuery不要</span>
+          <span class="tag">data-bs-toggle</span>
+          <span class="tag">Modal API</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="row">
+    <div class="col-12">
+      <h5 class="mb-3">Bootstrap 3 → 5 主要変更点チートシート</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>カテゴリ</th>
+              <th>Bootstrap 3</th>
+              <th>Bootstrap 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>最小ブレークポイント</td>
+              <td><code>col-xs-*</code></td>
+              <td><code>col-*</code></td>
+            </tr>
+            <tr>
+              <td>JS トグル属性</td>
+              <td><code>data-toggle</code></td>
+              <td><code>data-bs-toggle</code></td>
+            </tr>
+            <tr>
+              <td>JS ターゲット属性</td>
+              <td><code>data-target</code></td>
+              <td><code>data-bs-target</code></td>
+            </tr>
+            <tr>
+              <td>依存ライブラリ</td>
+              <td>jQuery 必須</td>
+              <td>Vanilla JS のみ</td>
+            </tr>
+            <tr>
+              <td>パネル系</td>
+              <td><code>panel / well / thumbnail</code></td>
+              <td><code>card</code></td>
+            </tr>
+            <tr>
+              <td>フォームグループ</td>
+              <td><code>form-group</code></td>
+              <td><code>mb-3</code>（廃止）</td>
+            </tr>
+            <tr>
+              <td>ナビバー色</td>
+              <td><code>navbar-default</code></td>
+              <td><code>navbar-light / navbar-dark</code></td>
+            </tr>
+            <tr>
+              <td>最大ブレークポイント</td>
+              <td>lg まで</td>
+              <td>xxl まで追加</td>
+            </tr>
+            <tr>
+              <td>グリッド基盤</td>
+              <td>Float ベース</td>
+              <td>Flexbox ベース</td>
+            </tr>
+            <tr>
+              <td>RTL サポート</td>
+              <td>なし</td>
+              <td>あり</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

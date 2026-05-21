@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: JavaScript / jQuery 不要化 | Bootstrap 移行ガイド</title>
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+    .demo-box {
+      border: 2px dashed #dee2e6;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="compare-header">
+  <h1>Lesson 5：JavaScript / jQuery 不要化</h1>
+  <ol class="breadcrumb" style="background:transparent;padding:4px 0;margin:0;font-size:.85rem;">
+    <li><a href="../index.html" style="color:#adb5bd;">ガイドトップ</a></li>
+    <li class="active" style="color:#fff; padding-left:8px;">Lesson 5</li>
+  </ol>
+</div>
+
+<div style="display:flex; min-height:calc(100vh - 64px);">
+
+  <!-- ===== LEFT: Bootstrap 3 ===== -->
+  <div class="pane pane-bs3" style="flex:1; overflow-y:auto;">
+    <span class="pane-label">Bootstrap 3</span>
+
+    <div class="note-box warn">
+      <strong>BS3 の問題点：</strong>
+      モーダル・コラプス・ドロップダウン・Tooltip など、ほぼすべてに jQuery が必須。
+      <code>data-toggle</code> / <code>data-target</code> を使用。
+    </div>
+
+    <!-- 読み込み順 -->
+    <h4>1. 必要な読み込みファイル（BS3）</h4>
+    <div class="code-block">&lt;!-- head --&gt;
+&lt;link rel="stylesheet"
+  href="bootstrap.min.css"&gt;
+
+&lt;!-- body 末尾（順番が重要！） --&gt;
+<span class="hl-del">&lt;script src="jquery.min.js"&gt;&lt;/script&gt;</span>
+<span class="hl-del">&lt;!-- jQuery 1.x / 2.x / 3.x が必須 --&gt;</span>
+&lt;script src="bootstrap.min.js"&gt;&lt;/script&gt;</div>
+
+    <hr class="divider">
+
+    <!-- モーダル -->
+    <h4>2. モーダル（data-toggle）</h4>
+    <div class="demo-box">
+      <p style="font-size:.85rem;color:#6c757d;">※ 動作デモは右ペイン（BS5）を参照</p>
+    </div>
+    <div class="code-block">&lt;!-- トリガーボタン --&gt;
+&lt;button type="button"
+  <span class="hl-del">data-toggle="modal"</span>
+  <span class="hl-del">data-target="#myModal"</span>&gt;
+  モーダルを開く
+&lt;/button&gt;
+
+&lt;!-- モーダル本体 --&gt;
+&lt;div class="modal fade" id="myModal"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;button type="button"
+          class="close"
+          <span class="hl-del">data-dismiss="modal"</span>&gt;
+          &lt;span&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;h4 class="modal-title"&gt;タイトル&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;本文&lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button <span class="hl-del">data-dismiss="modal"</span>&gt;閉じる&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <hr class="divider">
+
+    <!-- Collapse -->
+    <h4>3. アコーディオン（data-toggle）</h4>
+    <div class="code-block">&lt;div class="panel-group" id="accordion"&gt;
+  &lt;div class="panel panel-default"&gt;
+    &lt;div class="panel-heading"&gt;
+      &lt;a <span class="hl-del">data-toggle="collapse"</span>
+         <span class="hl-del">data-parent="#accordion"</span>
+         href="#collapseOne"&gt;
+        項目 1
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="collapseOne"
+         class="panel-collapse collapse in"&gt;
+      &lt;div class="panel-body"&gt;内容&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <hr class="divider">
+
+    <!-- JS API -->
+    <h4>4. JS API（jQuery プラグイン）</h4>
+    <div class="code-block">&lt;!-- jQuery で制御（BS3） --&gt;
+<span class="hl-del">$('#myModal').modal('show')</span>
+<span class="hl-del">$('#myModal').modal('hide')</span>
+<span class="hl-del">$('#myModal').on('shown.bs.modal', function () {</span>
+<span class="hl-del">  // イベント処理</span>
+<span class="hl-del">})</span>
+
+&lt;!-- Tooltip の初期化も jQuery 必須 --&gt;
+<span class="hl-del">$('[data-toggle="tooltip"]').tooltip()</span></div>
+
+  </div>
+
+  <!-- ===== RIGHT: Bootstrap 5 ===== -->
+  <div class="pane pane-bs5" style="flex:1; overflow-y:auto;">
+    <span class="pane-label">Bootstrap 5</span>
+
+    <div class="note-box">
+      <strong>BS5 の変更点：</strong>
+      jQuery を完全に排除。Vanilla JS のみで動作。
+      <code>data-toggle</code> / <code>data-target</code> → <code>data-bs-toggle</code> / <code>data-bs-target</code> に変更。
+      <code>data-dismiss</code> → <code>data-bs-dismiss</code>。
+    </div>
+
+    <!-- 読み込み順 -->
+    <h4>1. 必要な読み込みファイル（BS5）</h4>
+    <div class="code-block">&lt;!-- head --&gt;
+&lt;link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+
+&lt;!-- body 末尾 --&gt;
+<span class="hl-add">&lt;!-- jQuery 不要！ --&gt;</span>
+<span class="hl-add">&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;</span>
+<span class="hl-add">&lt;/script&gt;</span>
+&lt;!-- bundle には Popper.js が内包済み --&gt;</div>
+
+    <hr class="divider">
+
+    <!-- モーダル（実際に動作） -->
+    <h4>2. モーダル（実際にクリックして確認）</h4>
+    <div class="demo-box">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs5Modal">
+        モーダルを開く
+      </button>
+    </div>
+    <div class="code-block">&lt;!-- トリガーボタン --&gt;
+&lt;button type="button" class="btn btn-primary"
+  <span class="hl-add">data-bs-toggle="modal"</span>
+  <span class="hl-add">data-bs-target="#bs5Modal"</span>&gt;
+  モーダルを開く
+&lt;/button&gt;
+
+&lt;!-- モーダル本体 --&gt;
+&lt;div class="modal fade" id="bs5Modal"
+     tabindex="-1"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h1 class="modal-title fs-5"&gt;タイトル&lt;/h1&gt;
+        &lt;button type="button"
+          class="<span class="hl-add">btn-close</span>"
+          <span class="hl-add">data-bs-dismiss="modal"</span>&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;本文&lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button class="btn btn-secondary"
+          <span class="hl-add">data-bs-dismiss="modal"</span>&gt;
+          閉じる
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <!-- モーダル本体 -->
+    <div class="modal fade" id="bs5Modal" tabindex="-1" aria-labelledby="bs5ModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="bs5ModalLabel">Bootstrap 5 モーダル</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            jQuery なしで動いています！<br>
+            <code>data-bs-toggle="modal"</code> と <code>data-bs-target</code> だけで動作します。
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- アコーディオン（実際に動作） -->
+    <h4>3. アコーディオン（実際にクリックして確認）</h4>
+    <div class="accordion mb-3" id="bs5Accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#acc1"
+                  aria-expanded="true">
+            項目 1（開いた状態）
+          </button>
+        </h2>
+        <div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#bs5Accordion">
+          <div class="accordion-body">
+            項目 1 の内容です。jQuery 不要で動きます。
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#acc2"
+                  aria-expanded="false">
+            項目 2
+          </button>
+        </h2>
+        <div id="acc2" class="accordion-collapse collapse" data-bs-parent="#bs5Accordion">
+          <div class="accordion-body">
+            項目 2 の内容。<code>accordion-item</code> / <code>accordion-button</code> などクラスが刷新。
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">&lt;div class="<span class="hl-add">accordion</span>" id="myAccordion"&gt;
+  &lt;div class="<span class="hl-add">accordion-item</span>"&gt;
+    &lt;h2 class="<span class="hl-add">accordion-header</span>"&gt;
+      &lt;button class="<span class="hl-add">accordion-button</span>"
+        <span class="hl-add">data-bs-toggle="collapse"</span>
+        <span class="hl-add">data-bs-target="#acc1"</span>&gt;
+        項目 1
+      &lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div id="acc1"
+         class="<span class="hl-add">accordion-collapse collapse show</span>"
+         data-bs-parent="#myAccordion"&gt;
+      &lt;div class="<span class="hl-add">accordion-body</span>"&gt;内容&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <hr class="divider">
+
+    <!-- JS API -->
+    <h4>4. JS API（Vanilla JS）</h4>
+    <div class="demo-box">
+      <button class="btn btn-outline-primary btn-sm" id="jsApiShow">JS API でモーダルを開く</button>
+      <button class="btn btn-outline-secondary btn-sm" id="jsApiHide">JS API で閉じる</button>
+      <p class="mt-2 mb-0" style="font-size:.8rem;color:#6c757d;">上のモーダル (#bs5Modal) を JS で制御します</p>
+    </div>
+    <div class="code-block">&lt;!-- Vanilla JS で制御（BS5） --&gt;
+<span class="hl-add">const modal = new bootstrap.Modal('#bs5Modal')</span>
+<span class="hl-add">modal.show()</span>
+<span class="hl-add">modal.hide()</span>
+
+&lt;!-- イベントリスナー --&gt;
+<span class="hl-add">document.getElementById('bs5Modal')</span>
+<span class="hl-add">  .addEventListener('shown.bs.modal', () => {</span>
+<span class="hl-add">    // 表示後の処理</span>
+<span class="hl-add">  })</span>
+
+&lt;!-- Tooltip の初期化（まとめて） --&gt;
+<span class="hl-add">document.querySelectorAll('[data-bs-toggle="tooltip"]')</span>
+<span class="hl-add">  .forEach(el => new bootstrap.Tooltip(el))</span></div>
+
+    <hr class="divider">
+
+    <!-- Tooltip デモ -->
+    <h4>5. Tooltip（JS 初期化が必要）</h4>
+    <div class="demo-box">
+      <button type="button" class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="ツールチップのテキスト">
+        ホバーしてください
+      </button>
+      &nbsp;
+      <button type="button" class="btn btn-secondary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              title="右側に表示">
+        右側 tooltip
+      </button>
+    </div>
+    <div class="code-block">&lt;button data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="ツールチップ"&gt;
+  ホバー
+&lt;/button&gt;
+
+&lt;!-- Tooltip は JS 初期化が必要 --&gt;
+&lt;script&gt;
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(el =&gt; new bootstrap.Tooltip(el))
+&lt;/script&gt;</div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Tooltip の初期化
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(el => new bootstrap.Tooltip(el))
+
+  // JS API デモ
+  document.getElementById('jsApiShow').addEventListener('click', () => {
+    const modal = new bootstrap.Modal(document.getElementById('bs5Modal'))
+    modal.show()
+  })
+  document.getElementById('jsApiHide').addEventListener('click', () => {
+    const modal = bootstrap.Modal.getInstance(document.getElementById('bs5Modal'))
+    if (modal) modal.hide()
+  })
+</script>
+</body>
+</html>
