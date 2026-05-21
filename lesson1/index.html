@@ -5,212 +5,309 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1: グリッドシステム | Bootstrap 移行ガイド</title>
   <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <style>
-    /* 左ペイン：BS3（CDN なし、見た目をシミュレート） */
-    .bs3-grid-demo .row-demo {
-      display: flex; flex-wrap: wrap; margin: 0 -8px; margin-bottom: 12px;
-    }
-    .bs3-grid-demo [class*="col-"] {
-      padding: 0 8px; box-sizing: border-box;
-    }
-    .bs3-grid-demo .col-md-4 { width: 33.333%; }
-    .bs3-grid-demo .col-md-6 { width: 50%; }
-    .bs3-grid-demo .col-md-8 { width: 66.666%; }
-    .bs3-grid-demo .col-md-12 { width: 100%; }
-    .bs3-grid-demo .col-xs-12 { width: 100%; }
-    .bs3-grid-demo .col-xs-6  { width: 50%; }
-    .cell {
-      background: #fd7e14;
-      color: #fff;
-      text-align: center;
-      padding: 16px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .cell.blue { background: #0d6efd; }
-    .cell.green { background: #198754; }
-
-    /* 右ペイン：BS5 CDN 読み込み済みクラスを使う */
-  </style>
-  <!-- Bootstrap 5 は右ペインのみに適用（クラス競合を避けるため scope で分離） -->
-  <link id="bs5css" rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        data-pane="bs5">
-  <style>
-    /* BS5 の影響をボディ全体に及ぼさないよう最小限に上書き */
     body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+
+    /* BS3 グリッドシミュレート */
+    .bs3 .row-demo { display:flex; flex-wrap:wrap; margin:0 -8px 10px; }
+    .bs3 [class*="col-"] { padding:0 8px; box-sizing:border-box; }
+    .bs3 .col-xs-12 { width:100%; } .bs3 .col-xs-6 { width:50%; }
+    .bs3 .col-xs-4 { width:33.333%; } .bs3 .col-xs-3 { width:25%; }
+    .bs3 .col-md-1 { width:8.333%; }  .bs3 .col-md-2 { width:16.666%; }
+    .bs3 .col-md-3 { width:25%; }     .bs3 .col-md-4 { width:33.333%; }
+    .bs3 .col-md-6 { width:50%; }     .bs3 .col-md-8 { width:66.666%; }
+    .bs3 .col-md-9 { width:75%; }     .bs3 .col-md-12 { width:100%; }
+
+    .cell { background:#fd7e14; color:#fff; text-align:center; padding:12px 4px; border-radius:4px; font-size:0.72rem; font-weight:600; }
+    .cell.blue   { background:#0d6efd; }
+    .cell.green  { background:#198754; }
+    .cell.purple { background:#6610f2; }
+    .cell.teal   { background:#0dcaf0; color:#000; }
+    .cell.gray   { background:#6c757d; }
   </style>
 </head>
 <body>
 
-<!-- ヘッダー -->
 <div class="compare-header">
   <h1>Lesson 1：グリッドシステム</h1>
   <ol class="breadcrumb" style="background:transparent;padding:4px 0;margin:0;font-size:.85rem;">
     <li><a href="../index.html" style="color:#adb5bd;">ガイドトップ</a></li>
-    <li class="active" style="color:#fff; padding-left:8px;">Lesson 1</li>
+    <li style="color:#fff;padding-left:8px;">Lesson 1</li>
   </ol>
 </div>
 
-<!-- 2カラム比較レイアウト -->
 <div style="display:flex; min-height:calc(100vh - 64px);">
 
-  <!-- ===== LEFT: Bootstrap 3 ===== -->
-  <div class="pane pane-bs3" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 3</span>
+<!-- ===== LEFT: Bootstrap 3 ===== -->
+<div class="pane pane-bs3 bs3" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 3</span>
+  <div class="note-box warn">Float ベース。xs/sm/md/lg の4段階。xl 以上のブレークポイントなし。</div>
 
-    <div class="note-box warn">
-      <strong>BS3 の特徴：</strong>
-      Float ベース。最小は <code>col-xs-*</code>。ブレークポイントは xs / sm / md / lg の4段階。
-    </div>
-
-    <!-- サンプル1: col-xs -->
-    <h4>1. 最小ブレークポイント（xs）</h4>
-    <div class="bs3-grid-demo">
-      <div class="row-demo">
-        <div class="col-xs-12"><div class="cell">col-xs-12（全幅）</div></div>
-      </div>
-      <div class="row-demo">
-        <div class="col-xs-6"><div class="cell">col-xs-6</div></div>
-        <div class="col-xs-6"><div class="cell">col-xs-6</div></div>
-      </div>
-    </div>
-    <div class="code-block"><span class="hl-del">&lt;div class="col-xs-12"&gt;</span>
+  <h4>1. 最小ブレークポイント（col-xs-*）</h4>
+  <div class="row-demo"><div class="col-xs-12"><div class="cell">col-xs-12</div></div></div>
+  <div class="row-demo">
+    <div class="col-xs-6"><div class="cell">col-xs-6</div></div>
+    <div class="col-xs-6"><div class="cell">col-xs-6</div></div>
+  </div>
+  <div class="code-block"><span class="hl-del">&lt;div class="col-xs-12"&gt;</span>
 <span class="hl-del">&lt;div class="col-xs-6"&gt;</span></div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <!-- サンプル2: 3カラム -->
-    <h4>2. 3カラムレイアウト</h4>
-    <div class="bs3-grid-demo">
+  <h4>2. 3カラム・オフセット</h4>
+  <div class="row-demo">
+    <div class="col-md-4"><div class="cell">col-md-4</div></div>
+    <div class="col-md-4"><div class="cell">col-md-4</div></div>
+    <div class="col-md-4"><div class="cell">col-md-4</div></div>
+  </div>
+  <div class="row-demo">
+    <div class="col-md-4" style="margin-left:33.333%"><div class="cell">col-md-4 col-md-offset-4</div></div>
+  </div>
+  <div class="code-block">&lt;div class="col-md-4"&gt;
+&lt;div class="<span class="hl-del">col-md-4 col-md-offset-4</span>"&gt;</div>
+
+  <hr class="divider">
+
+  <h4>3. ネストグリッド</h4>
+  <div class="row-demo">
+    <div class="col-md-8">
+      <div class="cell" style="margin-bottom:6px;">col-md-8（親）</div>
       <div class="row-demo">
-        <div class="col-md-4"><div class="cell">col-md-4</div></div>
-        <div class="col-md-4"><div class="cell">col-md-4</div></div>
-        <div class="col-md-4"><div class="cell">col-md-4</div></div>
+        <div class="col-md-6"><div class="cell" style="background:#c0392b;">col-md-6（子）</div></div>
+        <div class="col-md-6"><div class="cell" style="background:#c0392b;">col-md-6（子）</div></div>
       </div>
     </div>
-    <div class="code-block">&lt;div class="<span class="hl-attr">row</span>"&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
+    <div class="col-md-4"><div class="cell">col-md-4</div></div>
+  </div>
+  <div class="code-block">&lt;div class="col-md-8"&gt;
+  &lt;div class="row"&gt;  &lt;!-- 内側でも row --&gt;
+    &lt;div class="col-md-6"&gt;&lt;/div&gt;
+    &lt;div class="col-md-6"&gt;&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <!-- サンプル3: オフセット -->
-    <h4>3. オフセット</h4>
-    <div class="bs3-grid-demo">
-      <div class="row-demo">
-        <div class="col-md-4" style="margin-left:33.333%"><div class="cell">col-md-4 col-md-offset-4</div></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="<span class="hl-del">col-md-4 col-md-offset-4</span>"&gt;</div>
-
-    <hr class="divider">
-
-    <h4>ブレークポイント一覧（BS3）</h4>
-    <div class="bs3-grid-demo">
-      <div class="row-demo">
-        <div class="col-md-12">
-          <div class="cell" style="background:#6c757d;font-size:.75rem;padding:10px;">
-            xs(&lt;768px) / sm(≥768px) / md(≥992px) / lg(≥1200px)
-          </div>
-        </div>
-      </div>
-    </div>
+  <h4>4. 並び順の変更（push / pull）</h4>
+  <div class="row-demo">
+    <div class="col-md-4" style="margin-left:66.666%"><div class="cell">col-md-4 col-md-push-8（右に移動）</div></div>
   </div>
+  <div class="code-block">&lt;div class="<span class="hl-del">col-md-4 col-md-push-8</span>"&gt;先に描画&lt;/div&gt;
+&lt;div class="<span class="hl-del">col-md-8 col-md-pull-4</span>"&gt;後に描画&lt;/div&gt;</div>
 
-  <!-- ===== RIGHT: Bootstrap 5 ===== -->
-  <div class="pane pane-bs5" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 5</span>
+  <hr class="divider">
 
-    <div class="note-box">
-      <strong>BS5 の変更点：</strong>
-      Flexbox ベースに刷新。<code>col-xs-*</code> は廃止され <code>col-*</code> に。
-      <code>xxl</code>（≥1400px）ブレークポイントが追加。
+  <h4>5. 表示・非表示（visible-*/hidden-*）</h4>
+  <div class="code-block">&lt;div class="<span class="hl-del">visible-xs</span>"&gt;XS のみ表示&lt;/div&gt;
+&lt;div class="<span class="hl-del">hidden-md</span>"&gt;MD で非表示&lt;/div&gt;
+&lt;div class="<span class="hl-del">hidden-xs hidden-sm</span>"&gt;SM以下で非表示&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. container の種類（2択のみ）</h4>
+  <div class="code-block">&lt;div class="<span class="hl-del">container</span>"&gt;固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-del">container-fluid</span>"&gt;全幅&lt;/div&gt;
+&lt;!-- 中間サイズの container は存在しない --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>ブレークポイント（BS3）</h4>
+  <div class="row-demo"><div class="col-xs-12">
+    <div class="cell gray" style="font-size:.7rem;padding:10px;">
+      xs(&lt;768px) / sm(≥768px) / md(≥992px) / lg(≥1200px)
     </div>
-
-    <!-- サンプル1: col（xs廃止） -->
-    <h4>1. 最小ブレークポイント（xs 廃止 → col）</h4>
-    <div class="container-fluid px-0">
-      <div class="row g-2 mb-3">
-        <div class="col-12"><div class="cell blue">col-12（全幅）</div></div>
-      </div>
-      <div class="row g-2 mb-3">
-        <div class="col-6"><div class="cell blue">col-6</div></div>
-        <div class="col-6"><div class="cell blue">col-6</div></div>
-      </div>
-    </div>
-    <div class="code-block"><span class="hl-add">&lt;div class="col-12"&gt;  &lt;!-- xs は不要 --&gt;</span>
-<span class="hl-add">&lt;div class="col-6"&gt;</span></div>
-
-    <hr class="divider">
-
-    <!-- サンプル2: 3カラム（同じでもg-*追加） -->
-    <h4>2. 3カラムレイアウト（gutter 追加）</h4>
-    <div class="container-fluid px-0">
-      <div class="row g-2 mb-3">
-        <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
-        <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
-        <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="<span class="hl-attr">row</span> <span class="hl-add">g-3</span>"&gt;  &lt;!-- g-* で gutter 指定 --&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
-  &lt;div class="<span class="hl-val">col-md-4</span>"&gt;...&lt;/div&gt;
-&lt;/div&gt;</div>
-
-    <hr class="divider">
-
-    <!-- サンプル3: オフセット -->
-    <h4>3. オフセット（クラス名変更）</h4>
-    <div class="container-fluid px-0">
-      <div class="row mb-3">
-        <div class="col-md-4 offset-md-4"><div class="cell blue">col-md-4 offset-md-4</div></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="col-md-4 <span class="hl-add">offset-md-4</span>"&gt;
-&lt;!-- BS3: col-md-offset-4 → BS5: offset-md-4 --&gt;</div>
-
-    <hr class="divider">
-
-    <h4>ブレークポイント一覧（BS5）</h4>
-    <div class="container-fluid px-0">
-      <div class="row g-1">
-        <div class="col-12">
-          <div class="cell green" style="font-size:.75rem;padding:10px;">
-            col(&lt;576px) / sm(≥576px) / md(≥768px) / lg(≥992px) / xl(≥1200px) / <strong>xxl(≥1400px)</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- Auto-layout（BS5新機能） -->
-    <h4>4. Auto-layout Columns（BS5 新機能）</h4>
-    <div class="container-fluid px-0">
-      <div class="row g-2 mb-2">
-        <div class="col"><div class="cell green">col</div></div>
-        <div class="col"><div class="cell green">col</div></div>
-        <div class="col"><div class="cell green">col</div></div>
-      </div>
-      <div class="row g-2">
-        <div class="col"><div class="cell green">col</div></div>
-        <div class="col-6"><div class="cell" style="background:#6610f2;">col-6（固定）</div></div>
-        <div class="col"><div class="cell green">col</div></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;!-- 幅を指定しない col は均等分割 --&gt;
-&lt;div class="<span class="hl-add">col</span>"&gt;自動&lt;/div&gt;
-&lt;div class="<span class="hl-add">col</span>"&gt;自動&lt;/div&gt;
-&lt;div class="<span class="hl-add">col-6</span>"&gt;固定&lt;/div&gt;</div>
-  </div>
-
+  </div></div>
 </div>
 
+<!-- ===== RIGHT: Bootstrap 5 ===== -->
+<div class="pane pane-bs5" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 5</span>
+  <div class="note-box">Flexbox ベース。col-xs 廃止・xxl 追加・order/align/justify が標準化。</div>
+
+  <h4>1. 最小ブレークポイント（col-xs 廃止 → col）</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row g-1 mb-1">
+      <div class="col-12"><div class="cell blue">col-12</div></div>
+    </div>
+    <div class="row g-1">
+      <div class="col-6"><div class="cell blue">col-6</div></div>
+      <div class="col-6"><div class="cell blue">col-6</div></div>
+    </div>
+  </div>
+  <div class="code-block"><span class="hl-add">&lt;div class="col-12"&gt;  &lt;!-- xs- 不要 --&gt;</span>
+<span class="hl-add">&lt;div class="col-6"&gt;</span></div>
+
+  <hr class="divider">
+
+  <h4>2. 3カラム・オフセット・Gutter</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row g-2 mb-2">
+      <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
+      <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
+      <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4"><div class="cell blue">offset-md-4</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;div class="row <span class="hl-add">g-3</span>"&gt;  &lt;!-- gutter 指定 --&gt;
+&lt;div class="col-md-4 <span class="hl-add">offset-md-4</span>"&gt;
+&lt;!-- BS3: col-md-offset-4 → BS5: offset-md-4 --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>3. ネストグリッド</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row g-2">
+      <div class="col-md-8">
+        <div class="cell blue mb-1">col-md-8（親）</div>
+        <div class="row g-1">
+          <div class="col-6"><div class="cell purple">col-6（子）</div></div>
+          <div class="col-6"><div class="cell purple">col-6（子）</div></div>
+        </div>
+      </div>
+      <div class="col-md-4"><div class="cell blue">col-md-4</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;div class="col-md-8"&gt;
+  &lt;div class="row <span class="hl-add">g-2</span>"&gt;  &lt;!-- g-* も使える --&gt;
+    &lt;div class="col-6"&gt;&lt;/div&gt;
+    &lt;div class="col-6"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. 並び順の変更（order-*）BS5 で刷新</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row g-1">
+      <div class="col order-3"><div class="cell green">HTML 1番目 / order-3</div></div>
+      <div class="col order-1"><div class="cell blue">HTML 2番目 / order-1</div></div>
+      <div class="col order-2"><div class="cell purple">HTML 3番目 / order-2</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- push/pull 廃止 → order-* で代替 --&gt;
+&lt;div class="col <span class="hl-add">order-3</span>"&gt;1番目に書くが3番目に表示&lt;/div&gt;
+&lt;div class="col <span class="hl-add">order-1</span>"&gt;2番目に書くが1番目に表示&lt;/div&gt;
+&lt;div class="col <span class="hl-add">order-2</span>"&gt;3番目に書くが2番目に表示&lt;/div&gt;
+
+&lt;!-- レスポンシブにも対応 --&gt;
+&lt;div class="col <span class="hl-add">order-md-first</span>"&gt;MD 以上で先頭&lt;/div&gt;
+&lt;div class="col <span class="hl-add">order-md-last</span>"&gt;MD 以上で末尾&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>5. 縦横の整列（Flexbox、BS5 標準化）</h4>
+  <div class="container-fluid px-0 mb-2">
+    <p style="font-size:.8rem;margin-bottom:4px;"><strong>align-items（縦方向）</strong></p>
+    <div class="row align-items-center g-1 mb-2" style="height:70px;background:#e9ecef;border-radius:4px;">
+      <div class="col"><div class="cell blue">center</div></div>
+      <div class="col"><div class="cell blue" style="height:50px;line-height:50px;">center</div></div>
+      <div class="col"><div class="cell blue">center</div></div>
+    </div>
+    <p style="font-size:.8rem;margin-bottom:4px;"><strong>justify-content（横方向）</strong></p>
+    <div class="row justify-content-center g-1 mb-2">
+      <div class="col-3"><div class="cell green">center</div></div>
+      <div class="col-3"><div class="cell green">center</div></div>
+    </div>
+    <div class="row justify-content-between g-1">
+      <div class="col-3"><div class="cell purple">between</div></div>
+      <div class="col-3"><div class="cell purple">between</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- 縦方向の整列（行全体） --&gt;
+&lt;div class="row <span class="hl-add">align-items-start</span>"&gt;
+&lt;div class="row <span class="hl-add">align-items-center</span>"&gt;
+&lt;div class="row <span class="hl-add">align-items-end</span>"&gt;
+
+&lt;!-- 縦方向の整列（列単独） --&gt;
+&lt;div class="col <span class="hl-add">align-self-start</span>"&gt;
+&lt;div class="col <span class="hl-add">align-self-center</span>"&gt;
+
+&lt;!-- 横方向の整列 --&gt;
+&lt;div class="row <span class="hl-add">justify-content-start</span>"&gt;
+&lt;div class="row <span class="hl-add">justify-content-center</span>"&gt;
+&lt;div class="row <span class="hl-add">justify-content-end</span>"&gt;
+&lt;div class="row <span class="hl-add">justify-content-between</span>"&gt;
+&lt;div class="row <span class="hl-add">justify-content-around</span>"&gt;
+&lt;div class="row <span class="hl-add">justify-content-evenly</span>"&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. Auto-layout Columns（BS5 新機能）</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row g-1 mb-1">
+      <div class="col"><div class="cell green">col</div></div>
+      <div class="col"><div class="cell green">col</div></div>
+      <div class="col"><div class="cell green">col</div></div>
+    </div>
+    <div class="row g-1">
+      <div class="col"><div class="cell green">col</div></div>
+      <div class="col-6"><div class="cell purple">col-6（固定）</div></div>
+      <div class="col"><div class="cell green">col</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- 数値なし col → 均等に幅を分割 --&gt;
+&lt;div class="<span class="hl-add">col</span>"&gt;自動&lt;/div&gt;
+&lt;div class="<span class="hl-add">col-6</span>"&gt;固定&lt;/div&gt;
+&lt;div class="<span class="hl-add">col</span>"&gt;残りを均等に&lt;/div&gt;
+
+&lt;!-- col-auto：内容幅に合わせて収縮 --&gt;
+&lt;div class="<span class="hl-add">col-auto</span>"&gt;コンテンツ幅&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>7. row-cols-*（行あたりの列数）BS5 新機能</h4>
+  <div class="container-fluid px-0 mb-2">
+    <div class="row row-cols-2 row-cols-md-4 g-1">
+      <div class="col"><div class="cell teal">item</div></div>
+      <div class="col"><div class="cell teal">item</div></div>
+      <div class="col"><div class="cell teal">item</div></div>
+      <div class="col"><div class="cell teal">item</div></div>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- row-cols-* で行あたりの列数を指定 --&gt;
+&lt;div class="row <span class="hl-add">row-cols-2 row-cols-md-4</span> g-3"&gt;
+  &lt;div class="col"&gt;item&lt;/div&gt;
+  &lt;div class="col"&gt;item&lt;/div&gt;
+  &lt;div class="col"&gt;item&lt;/div&gt;
+  &lt;div class="col"&gt;item&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- SM以下: 2列 / MD以上: 4列 に自動変換 --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>8. 表示・非表示（d-* ユーティリティ）</h4>
+  <div class="code-block">&lt;!-- visible-* / hidden-* 廃止 → d-* で統一 --&gt;
+&lt;div class="<span class="hl-add">d-none d-md-block</span>"&gt;MD以上で表示&lt;/div&gt;
+&lt;div class="<span class="hl-add">d-md-none</span>"&gt;MD未満のみ表示&lt;/div&gt;
+&lt;div class="<span class="hl-add">d-none d-sm-block d-md-none</span>"&gt;SMのみ表示&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>9. container の種類（BS5 で中間サイズ追加）</h4>
+  <div class="code-block">&lt;div class="<span class="hl-add">container</span>"&gt;    固定幅（レスポンシブ）&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-sm</span>"&gt; SM 以上で固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-md</span>"&gt; MD 以上で固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-lg</span>"&gt; LG 以上で固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-xl</span>"&gt; XL 以上で固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-xxl</span>"&gt;XXL 以上で固定幅&lt;/div&gt;
+&lt;div class="<span class="hl-add">container-fluid</span>"&gt;常に全幅&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>ブレークポイント（BS5）</h4>
+  <div class="container-fluid px-0">
+    <div class="row g-1">
+      <div class="col-12"><div class="cell green" style="font-size:.7rem;padding:10px;">
+        col(&lt;576px) / sm(≥576px) / md(≥768px) / lg(≥992px) / xl(≥1200px) / <strong>xxl(≥1400px)</strong>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /flex -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

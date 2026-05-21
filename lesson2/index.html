@@ -8,13 +8,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <style>
     body { margin: 0; font-family: 'Segoe UI', sans-serif; }
-    .demo-box {
-      border: 2px dashed #dee2e6;
-      border-radius: 8px;
-      padding: 0;
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
+    .demo-box { border:2px dashed #dee2e6; border-radius:8px; margin-bottom:16px; overflow:hidden; }
+
+    /* BS3 ナビバーシミュレート */
+    .nav-bs3 { background:#e7e7e7; border:1px solid #d4d4d4; margin:0; padding:0 15px; display:flex; align-items:center; min-height:50px; flex-wrap:wrap; }
+    .nav-bs3 .brand { font-size:18px; color:#333; font-weight:bold; padding:15px 0; margin-right:20px; text-decoration:none; }
+    .nav-bs3 ul { list-style:none; padding:0; margin:0; display:flex; }
+    .nav-bs3 ul li a { display:block; padding:15px 12px; color:#777; text-decoration:none; font-size:14px; }
+    .nav-bs3 ul li a:hover { color:#333; background:#d5d5d5; }
+    .nav-bs3 ul li.active a { color:#555; background:#d5d5d5; }
+    .nav-bs3.inverse { background:#222; border-color:#080808; }
+    .nav-bs3.inverse .brand, .nav-bs3.inverse ul li a { color:#9d9d9d; }
+    .nav-bs3.inverse ul li a:hover { color:#fff; background:#080808; }
+    .nav-bs3 .bs3-form { display:flex; align-items:center; margin-left:10px; }
+    .nav-bs3 .bs3-form input { padding:5px 10px; border:1px solid #ccc; border-radius:4px; font-size:13px; }
+    .nav-bs3 .bs3-form .btn { padding:5px 10px; font-size:13px; background:#337ab7; color:#fff; border:none; border-radius:4px; margin-left:4px; cursor:pointer; }
+
+    /* BS3 タブ/ピルシミュレート */
+    .bs3-nav-tabs { list-style:none; padding:0; margin:0 0 -1px; display:flex; border-bottom:1px solid #ddd; }
+    .bs3-nav-tabs li a { display:block; padding:8px 16px; color:#337ab7; text-decoration:none; font-size:14px; border:1px solid transparent; border-radius:4px 4px 0 0; margin-bottom:-1px; }
+    .bs3-nav-tabs li.active a { color:#555; background:#fff; border-color:#ddd #ddd #fff; }
+    .bs3-nav-pills { list-style:none; padding:0; margin:0; display:flex; gap:4px; }
+    .bs3-nav-pills li a { display:block; padding:8px 16px; color:#337ab7; text-decoration:none; font-size:14px; border-radius:4px; }
+    .bs3-nav-pills li.active a { background:#337ab7; color:#fff; }
   </style>
 </head>
 <body>
@@ -23,205 +39,216 @@
   <h1>Lesson 2：ナビゲーションバー</h1>
   <ol class="breadcrumb" style="background:transparent;padding:4px 0;margin:0;font-size:.85rem;">
     <li><a href="../index.html" style="color:#adb5bd;">ガイドトップ</a></li>
-    <li class="active" style="color:#fff; padding-left:8px;">Lesson 2</li>
+    <li style="color:#fff;padding-left:8px;">Lesson 2</li>
   </ol>
 </div>
 
 <div style="display:flex; min-height:calc(100vh - 64px);">
 
-  <!-- ===== LEFT: Bootstrap 3 ===== -->
-  <div class="pane pane-bs3" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 3</span>
+<!-- ===== LEFT: Bootstrap 3 ===== -->
+<div class="pane pane-bs3" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 3</span>
+  <div class="note-box warn">data-toggle/data-target で制御。jQuery 必須。カラーは navbar-default / navbar-inverse の2択のみ。</div>
 
-    <div class="note-box warn">
-      <strong>BS3 の問題点：</strong>
-      <code>data-toggle</code> / <code>data-target</code> で制御。
-      <code>navbar-default</code>（灰色）または <code>navbar-inverse</code>（黒）の2択。
-      jQuery が必須。
-    </div>
-
-    <h4>1. 基本的なナビバー（BS3）</h4>
-    <div class="demo-box">
-      <!-- BS3 スタイルを CSS で再現 -->
-      <style>
-        .nav-bs3 { background:#e7e7e7; border:1px solid #d4d4d4; margin:0; padding:0 15px; display:flex; align-items:center; min-height:50px; flex-wrap:wrap; }
-        .nav-bs3 .brand { font-size:18px; color:#333; font-weight:bold; padding:15px 0; margin-right:20px; text-decoration:none; }
-        .nav-bs3 ul { list-style:none; padding:0; margin:0; display:flex; }
-        .nav-bs3 ul li a { display:block; padding:15px 12px; color:#777; text-decoration:none; font-size:14px; }
-        .nav-bs3 ul li a:hover { color:#333; background:#d5d5d5; }
-        .nav-bs3 ul li.active a { color:#555; background:#d5d5d5; }
-        .nav-bs3-inverse { background:#222; border-color:#080808; }
-        .nav-bs3-inverse .brand, .nav-bs3-inverse ul li a { color:#9d9d9d; }
-        .nav-bs3-inverse ul li a:hover { color:#fff; background:#080808; }
-      </style>
-      <nav class="nav-bs3">
-        <a class="brand" href="#">MySite</a>
-        <ul>
-          <li class="active"><a href="#">ホーム</a></li>
-          <li><a href="#">サービス</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="code-block">&lt;nav class="<span class="hl-del">navbar navbar-default</span>"&gt;
+  <h4>1. 基本ナビバー（navbar-default）</h4>
+  <div class="demo-box">
+    <nav class="nav-bs3">
+      <a class="brand" href="#">MySite</a>
+      <ul><li class="active"><a href="#">ホーム</a></li><li><a href="#">サービス</a></li><li><a href="#">お問い合わせ</a></li></ul>
+    </nav>
+  </div>
+  <div class="code-block">&lt;nav class="navbar <span class="hl-del">navbar-default</span>"&gt;
   &lt;div class="container-fluid"&gt;
-    &lt;div class="navbar-header"&gt;
-      &lt;button type="button" class="navbar-toggle collapsed"
+    &lt;div class="<span class="hl-del">navbar-header</span>"&gt;
+      &lt;button class="<span class="hl-del">navbar-toggle collapsed</span>"
         <span class="hl-del">data-toggle="collapse"</span>
-        <span class="hl-del">data-target="#myNav"</span>&gt;
-        &lt;span class="icon-bar"&gt;&lt;/span&gt;
-        &lt;span class="icon-bar"&gt;&lt;/span&gt;
-        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+        <span class="hl-del">data-target="#nav"</span>&gt;
+        &lt;span class="<span class="hl-del">icon-bar</span>"&gt;&lt;/span&gt;  &lt;!-- ×3 --&gt;
       &lt;/button&gt;
       &lt;a class="navbar-brand" href="#"&gt;MySite&lt;/a&gt;
     &lt;/div&gt;
-    &lt;div class="<span class="hl-del">collapse navbar-collapse</span>" id="myNav"&gt;
-      &lt;ul class="nav navbar-nav"&gt;
+    &lt;div class="collapse navbar-collapse" id="nav"&gt;
+      &lt;ul class="<span class="hl-del">nav navbar-nav</span>"&gt;
         &lt;li class="active"&gt;&lt;a href="#"&gt;ホーム&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;サービス&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/nav&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <h4>2. ナビバーの色スタイル（2択）</h4>
-    <div class="demo-box">
-      <nav class="nav-bs3" style="background:#222;border-color:#080808;">
-        <a class="brand" href="#" style="color:#9d9d9d;">MySite</a>
-        <ul>
-          <li><a href="#" style="color:#9d9d9d;">ホーム</a></li>
-          <li><a href="#" style="color:#9d9d9d;">サービス</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="code-block">class="navbar <span class="hl-del">navbar-inverse</span>"  ← 黒
-class="navbar <span class="hl-del">navbar-default</span>"  ← 灰色
-&lt;!-- この2色のみ --&gt;</div>
+  <h4>2. 色（2択のみ）</h4>
+  <div class="demo-box">
+    <nav class="nav-bs3 inverse"><a class="brand" href="#">MySite</a><ul><li><a href="#">ホーム</a></li></ul></nav>
+  </div>
+  <div class="code-block">class="navbar <span class="hl-del">navbar-inverse</span>"  ← 黒
+class="navbar <span class="hl-del">navbar-default</span>"  ← 灰（この2色のみ）</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <h4>3. ドロップダウン（jQuery 依存）</h4>
-    <div class="code-block">&lt;li class="dropdown"&gt;
+  <h4>3. 検索フォーム付きナビバー</h4>
+  <div class="demo-box">
+    <nav class="nav-bs3">
+      <a class="brand" href="#">MySite</a>
+      <div class="bs3-form">
+        <input type="text" placeholder="検索...">
+        <button class="btn">検索</button>
+      </div>
+    </nav>
+  </div>
+  <div class="code-block">&lt;form class="<span class="hl-del">navbar-form navbar-left</span>"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="text" class="form-control"
+           placeholder="検索..."&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-default"&gt;
+    検索
+  &lt;/button&gt;
+&lt;/form&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. ドロップダウン（jQuery 依存）</h4>
+  <div class="code-block">&lt;li class="dropdown"&gt;
   &lt;a href="#" class="dropdown-toggle"
      <span class="hl-del">data-toggle="dropdown"</span>&gt;
     メニュー &lt;span class="caret"&gt;&lt;/span&gt;
   &lt;/a&gt;
   &lt;ul class="dropdown-menu"&gt;
     &lt;li&gt;&lt;a href="#"&gt;項目1&lt;/a&gt;&lt;/li&gt;
+    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;項目2&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/li&gt;
-&lt;!-- jQuery + bootstrap.js が必要 --&gt;</div>
+&lt;/li&gt;</div>
 
-  </div>
+  <hr class="divider">
 
-  <!-- ===== RIGHT: Bootstrap 5 ===== -->
-  <div class="pane pane-bs5" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 5</span>
+  <h4>5. ナビバーの固定（fixed-top/bottom）</h4>
+  <div class="code-block">&lt;nav class="navbar navbar-default <span class="hl-del">navbar-fixed-top</span>"&gt;
+&lt;nav class="navbar navbar-default <span class="hl-del">navbar-fixed-bottom</span>"&gt;
+&lt;nav class="navbar navbar-default <span class="hl-del">navbar-static-top</span>"&gt;</div>
 
-    <div class="note-box">
-      <strong>BS5 の変更点：</strong>
-      <code>data-bs-toggle</code> / <code>data-bs-target</code> に統一。
-      <code>navbar-default</code> は廃止。<code>navbar-expand-{breakpoint}</code> でレスポンシブを制御。
-      jQuery 不要。
-    </div>
+  <hr class="divider">
 
-    <h4>1. 基本的なナビバー（BS5）</h4>
-    <div class="demo-box">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">MySite</a>
-          <button class="navbar-toggler" type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navBS5Demo"
-                  aria-controls="navBS5Demo"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navBS5Demo">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">ホーム</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">サービス</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">お問い合わせ</a>
-              </li>
-            </ul>
-          </div>
+  <h4>6. タブ / ピルナビゲーション</h4>
+  <ul class="bs3-nav-tabs mb-3">
+    <li class="active"><a href="#">タブ1</a></li>
+    <li><a href="#">タブ2</a></li>
+    <li><a href="#">タブ3</a></li>
+  </ul>
+  <ul class="bs3-nav-pills">
+    <li class="active"><a href="#">ピル1</a></li>
+    <li><a href="#">ピル2</a></li>
+  </ul>
+  <div class="code-block">&lt;ul class="nav <span class="hl-del">nav-tabs</span>"&gt;
+  &lt;li class="<span class="hl-del">active</span>"&gt;&lt;a href="#"&gt;タブ1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="nav <span class="hl-del">nav-pills</span>"&gt;
+  &lt;li class="<span class="hl-del">active</span>"&gt;&lt;a href="#"&gt;ピル&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</div>
+</div>
+
+<!-- ===== RIGHT: Bootstrap 5 ===== -->
+<div class="pane pane-bs5" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 5</span>
+  <div class="note-box">data-bs-* に統一。jQuery 不要。navbar-expand-{bp} でレスポンシブ制御。bg-* で自由な色指定。</div>
+
+  <h4>1. 基本ナビバー（実際にハンバーガーをクリック可）</h4>
+  <div class="demo-box">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MySite</a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#nav5demo"
+                aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav5demo">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" href="#">ホーム</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">サービス</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">お問い合わせ</a></li>
+          </ul>
         </div>
-      </nav>
-    </div>
-    <div class="code-block">&lt;nav class="navbar <span class="hl-add">navbar-expand-lg navbar-light bg-light</span>"&gt;
+      </div>
+    </nav>
+  </div>
+  <div class="code-block">&lt;nav class="navbar <span class="hl-add">navbar-expand-lg navbar-light bg-light</span>"&gt;
   &lt;div class="container-fluid"&gt;
     &lt;a class="navbar-brand" href="#"&gt;MySite&lt;/a&gt;
-    &lt;button class="navbar-toggler" type="button"
+    &lt;button class="<span class="hl-add">navbar-toggler</span>" type="button"
             <span class="hl-add">data-bs-toggle="collapse"</span>
-            <span class="hl-add">data-bs-target="#navBS5Demo"</span>&gt;
-      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+            <span class="hl-add">data-bs-target="#nav"</span>&gt;
+      &lt;span class="<span class="hl-add">navbar-toggler-icon</span>"&gt;&lt;/span&gt;
     &lt;/button&gt;
-    &lt;div class="collapse navbar-collapse" id="navBS5Demo"&gt;
-      &lt;ul class="navbar-nav"&gt;
-        &lt;li class="nav-item"&gt;
-          &lt;a class="nav-link active" href="#"&gt;ホーム&lt;/a&gt;
+    &lt;div class="collapse navbar-collapse" id="nav"&gt;
+      &lt;ul class="<span class="hl-add">navbar-nav</span>"&gt;
+        &lt;li class="<span class="hl-add">nav-item</span>"&gt;
+          &lt;a class="<span class="hl-add">nav-link</span> active" href="#"&gt;ホーム&lt;/a&gt;
         &lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/nav&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <h4>2. カラーバリエーション（多彩）</h4>
-    <div class="demo-box mb-2">
-      <nav class="navbar navbar-dark bg-dark px-3">
-        <span class="navbar-brand">bg-dark</span>
-      </nav>
-    </div>
-    <div class="demo-box mb-2">
-      <nav class="navbar navbar-dark bg-primary px-3">
-        <span class="navbar-brand">bg-primary</span>
-      </nav>
-    </div>
-    <div class="demo-box mb-2">
-      <nav class="navbar navbar-light" style="background:#e8f5e9;">
-        <span class="navbar-brand">カスタム bg-*</span>
-      </nav>
-    </div>
-    <div class="code-block">class="navbar navbar-dark <span class="hl-add">bg-dark</span>"
+  <h4>2. カラーバリエーション（bg-* で自由指定）</h4>
+  <div class="demo-box mb-1"><nav class="navbar navbar-dark bg-dark px-3"><span class="navbar-brand mb-0">navbar-dark bg-dark</span></nav></div>
+  <div class="demo-box mb-1"><nav class="navbar navbar-dark bg-primary px-3"><span class="navbar-brand mb-0">navbar-dark bg-primary</span></nav></div>
+  <div class="demo-box mb-1"><nav class="navbar navbar-dark bg-success px-3"><span class="navbar-brand mb-0">navbar-dark bg-success</span></nav></div>
+  <div class="demo-box mb-3"><nav class="navbar navbar-light bg-warning px-3"><span class="navbar-brand mb-0">navbar-light bg-warning</span></nav></div>
+  <div class="code-block">class="navbar navbar-dark <span class="hl-add">bg-dark</span>"
 class="navbar navbar-dark <span class="hl-add">bg-primary</span>"
+class="navbar navbar-dark <span class="hl-add">bg-success</span>"
 class="navbar navbar-light <span class="hl-add">bg-warning</span>"
-&lt;!-- bg-* ユーティリティで自由に色指定 --&gt;</div>
+class="navbar navbar-light <span class="hl-add">bg-light</span>"
+&lt;!-- bg-* で任意の色を指定できる --&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <h4>3. ドロップダウン（jQuery 不要）</h4>
-    <div class="demo-box">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand">Demo</span>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#"
-                 data-bs-toggle="dropdown" aria-expanded="false">
-                メニュー
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">項目1</a></li>
-                <li><a class="dropdown-item" href="#">項目2</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">区切り後</a></li>
-              </ul>
-            </li>
-          </ul>
+  <h4>3. 検索フォーム + ボタン付きナビバー</h4>
+  <div class="demo-box">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MySite</a>
+        <div class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="検索..." style="width:160px;">
+          <button class="btn btn-outline-primary" type="submit">検索</button>
         </div>
-      </nav>
-    </div>
-    <div class="code-block">&lt;li class="nav-item dropdown"&gt;
+      </div>
+    </nav>
+  </div>
+  <div class="code-block">&lt;!-- navbar-form 廃止 → d-flex で代替 --&gt;
+&lt;div class="<span class="hl-add">d-flex</span>" role="search"&gt;
+  &lt;input class="form-control <span class="hl-add">me-2</span>" type="search"
+         placeholder="検索..."&gt;
+  &lt;button class="btn btn-outline-success"&gt;検索&lt;/button&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. ドロップダウン（jQuery 不要・実際に動作）</h4>
+  <div class="demo-box">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">Demo</span>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">メニュー</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">項目1</a></li>
+              <li><a class="dropdown-item" href="#">項目2</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">区切り後</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="code-block">&lt;li class="nav-item dropdown"&gt;
   &lt;a class="nav-link dropdown-toggle" href="#"
      <span class="hl-add">data-bs-toggle="dropdown"</span>&gt;
     メニュー
@@ -230,13 +257,96 @@ class="navbar navbar-light <span class="hl-add">bg-warning</span>"
     &lt;li&gt;&lt;a class="<span class="hl-add">dropdown-item</span>" href="#"&gt;項目1&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;hr class="<span class="hl-add">dropdown-divider</span>"&gt;&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/li&gt;
-&lt;!-- jQuery なし、Bootstrap Bundle.js のみ --&gt;</div>
+&lt;/li&gt;</div>
 
+  <hr class="divider">
+
+  <h4>5. ナビバーの固定（クラス名変更）</h4>
+  <div class="code-block">&lt;!-- navbar-fixed-top → fixed-top --&gt;
+&lt;nav class="navbar <span class="hl-add">fixed-top</span>"&gt;      ← 常に最上部固定
+&lt;nav class="navbar <span class="hl-add">fixed-bottom</span>"&gt;   ← 常に最下部固定
+&lt;nav class="navbar <span class="hl-add">sticky-top</span>"&gt;      ← スクロールで追従
+&lt;!-- navbar-static-top は廃止（通常フロー = デフォルト） --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. タブ / ピルナビゲーション（active の付与先変更）</h4>
+  <ul class="nav nav-tabs mb-2" id="tabDemo" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#t1" type="button">タブ1</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#t2" type="button">タブ2</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#t3" type="button">タブ3</button>
+    </li>
+  </ul>
+  <div class="tab-content mb-3" style="border:1px solid #dee2e6;border-top:none;padding:12px;border-radius:0 0 4px 4px;">
+    <div class="tab-pane fade show active" id="t1">タブ1 のコンテンツ</div>
+    <div class="tab-pane fade" id="t2">タブ2 のコンテンツ</div>
+    <div class="tab-pane fade" id="t3">タブ3 のコンテンツ</div>
   </div>
+  <ul class="nav nav-pills mb-3">
+    <li class="nav-item"><a class="nav-link active" href="#">ピル1</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">ピル2</a></li>
+    <li class="nav-item"><a class="nav-link disabled">無効</a></li>
+  </ul>
+  <div class="code-block">&lt;!-- BS5: li ではなく button に active を付与 --&gt;
+&lt;ul class="nav nav-tabs" id="myTab" role="tablist"&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;button class="nav-link <span class="hl-add">active</span>"
+            <span class="hl-add">data-bs-toggle="tab"</span>
+            <span class="hl-add">data-bs-target="#tab1"</span>&gt;
+      タブ1
+    &lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="tab-content"&gt;
+  &lt;div class="<span class="hl-add">tab-pane fade show active</span>" id="tab1"&gt;内容&lt;/div&gt;
+  &lt;div class="<span class="hl-add">tab-pane fade</span>" id="tab2"&gt;内容&lt;/div&gt;
+&lt;/div&gt;</div>
 
+  <hr class="divider">
+
+  <h4>7. Offcanvas ナビバー（BS5 新機能）</h4>
+  <div class="demo-box" style="padding:12px;">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
+      Offcanvas ナビを開く
+    </button>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">ナビゲーション</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">ホーム</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">サービス</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- BS5 新機能：Offcanvas ナビバー --&gt;
+&lt;nav class="navbar"&gt;
+  &lt;button <span class="hl-add">data-bs-toggle="offcanvas"</span>
+          <span class="hl-add">data-bs-target="#offNav"</span>&gt;
+    メニュー
+  &lt;/button&gt;
+&lt;/nav&gt;
+
+&lt;div class="<span class="hl-add">offcanvas offcanvas-start</span>" id="offNav"&gt;
+  &lt;div class="<span class="hl-add">offcanvas-header</span>"&gt;
+    &lt;h5 class="<span class="hl-add">offcanvas-title</span>"&gt;ナビ&lt;/h5&gt;
+    &lt;button class="btn-close"
+            <span class="hl-add">data-bs-dismiss="offcanvas"</span>&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="<span class="hl-add">offcanvas-body</span>"&gt;...&lt;/div&gt;
+&lt;/div&gt;</div>
 </div>
 
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -110,11 +110,37 @@
       <a href="lesson5/index.html" class="lesson-card">
         <div class="lesson-num">05</div>
         <h3>JavaScript / jQuery 不要化</h3>
-        <p>Modal・Collapse・Tooltip が jQuery なしで動作する仕組みと data-bs-* 属性</p>
+        <p>Modal・Collapse・Tooltip・Toast・Carousel・Offcanvas が jQuery なしで動作</p>
         <div>
           <span class="tag">jQuery不要</span>
           <span class="tag">data-bs-toggle</span>
-          <span class="tag">Modal API</span>
+          <span class="tag">Toast/Offcanvas</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson6/index.html" class="lesson-card">
+        <div class="lesson-num">06</div>
+        <h3>ユーティリティクラスの変更（RTL 対応）</h3>
+        <p>ml/mr → ms/me・pl/pr → ps/pe・text-left/right → start/end・btn-block 廃止</p>
+        <div>
+          <span class="tag">ms/me/ps/pe</span>
+          <span class="tag">text-start/end</span>
+          <span class="tag">d-grid</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <a href="lesson7/index.html" class="lesson-card">
+        <div class="lesson-num">07</div>
+        <h3>コンポーネント刷新</h3>
+        <p>Badge（label 統合）・Alert・Button（btn-block廃止）・Spinner・Placeholder 新登場</p>
+        <div>
+          <span class="tag">badge+bg-*</span>
+          <span class="tag">Spinner</span>
+          <span class="tag">Placeholder</span>
         </div>
       </a>
     </div>
@@ -185,6 +211,76 @@
               <td>RTL サポート</td>
               <td>なし</td>
               <td>あり</td>
+            </tr>
+            <tr>
+              <td>左右スペーシング</td>
+              <td><code>ml-* / mr-* / pl-* / pr-*</code></td>
+              <td><code>ms-* / me-* / ps-* / pe-*</code></td>
+            </tr>
+            <tr>
+              <td>テキスト整列</td>
+              <td><code>text-left / text-right</code></td>
+              <td><code>text-start / text-end</code></td>
+            </tr>
+            <tr>
+              <td>Float</td>
+              <td><code>pull-left / pull-right</code></td>
+              <td><code>float-start / float-end</code></td>
+            </tr>
+            <tr>
+              <td>全幅ボタン</td>
+              <td><code>btn-block</code></td>
+              <td><code>d-grid</code>（廃止）</td>
+            </tr>
+            <tr>
+              <td>閉じるボタン</td>
+              <td><code>class="close"</code> + <code>&amp;times;</code></td>
+              <td><code>class="btn-close"</code></td>
+            </tr>
+            <tr>
+              <td>JS 閉じる属性</td>
+              <td><code>data-dismiss</code></td>
+              <td><code>data-bs-dismiss</code></td>
+            </tr>
+            <tr>
+              <td>Badge / Label</td>
+              <td><code>badge</code> と <code>label</code> が別</td>
+              <td><code>badge bg-*</code> に統合</td>
+            </tr>
+            <tr>
+              <td>ピル型バッジ</td>
+              <td><code>label-pill</code></td>
+              <td><code>badge rounded-pill</code></td>
+            </tr>
+            <tr>
+              <td>スクリーンリーダー</td>
+              <td><code>sr-only</code></td>
+              <td><code>visually-hidden</code></td>
+            </tr>
+            <tr>
+              <td>Embed レスポンシブ</td>
+              <td><code>embed-responsive embed-responsive-16by9</code></td>
+              <td><code>ratio ratio-16x9</code></td>
+            </tr>
+            <tr>
+              <td>Spinner</td>
+              <td>なし</td>
+              <td><code>spinner-border / spinner-grow</code>（新機能）</td>
+            </tr>
+            <tr>
+              <td>Toast</td>
+              <td>なし</td>
+              <td><code>toast / toast-container</code>（新機能）</td>
+            </tr>
+            <tr>
+              <td>Offcanvas</td>
+              <td>なし</td>
+              <td><code>offcanvas offcanvas-start</code>（新機能）</td>
+            </tr>
+            <tr>
+              <td>Placeholder (Skeleton)</td>
+              <td>なし</td>
+              <td><code>placeholder placeholder-glow</code>（新機能）</td>
             </tr>
           </tbody>
         </table>

@@ -9,24 +9,44 @@
   <style>
     body { margin: 0; font-family: 'Segoe UI', sans-serif; }
 
-    /* BS3 form-group 再現 */
-    .bs3-form-group { margin-bottom: 15px; }
-    .bs3-form-group label { font-weight: 700; margin-bottom: 5px; display: block; font-size: 14px; }
-    .bs3-form-control {
-      display: block; width: 100%; padding: 6px 12px;
-      font-size: 14px; line-height: 1.43;
-      color: #555; background: #fff;
-      border: 1px solid #ccc; border-radius: 4px;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      box-sizing: border-box;
+    /* BS3 フォームシミュレート */
+    .bs3 .form-group { margin-bottom:15px; }
+    .bs3 label { font-weight:700; margin-bottom:5px; display:block; font-size:13px; }
+    .bs3 .form-control {
+      display:block; width:100%; padding:6px 12px; font-size:14px;
+      color:#555; background:#fff; border:1px solid #ccc; border-radius:4px;
+      box-shadow:inset 0 1px 1px rgba(0,0,0,.075); box-sizing:border-box;
     }
-    .bs3-form-control:focus { border-color:#66afe9; outline:0; box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6); }
-    .bs3-btn { padding:6px 12px; font-size:14px; border-radius:4px; border:1px solid; cursor:pointer; }
-    .bs3-btn-primary { background:#337ab7; border-color:#2e6da4; color:#fff; }
-    .bs3-help-block { display:block; margin-top:5px; margin-bottom:10px; color:#737373; font-size:12px; }
-
-    .bs3-radio label, .bs3-checkbox label { font-weight:400; cursor:pointer; padding-left:20px; }
-    .bs3-radio input, .bs3-checkbox input { margin-right:6px; }
+    .bs3 .form-control:focus { border-color:#66afe9; outline:0; }
+    .bs3 .help-block { display:block; margin-top:5px; color:#737373; font-size:12px; }
+    .bs3 .has-error .form-control { border-color:#a94442; }
+    .bs3 .has-error label, .bs3 .has-error .help-block { color:#a94442; }
+    .bs3 .has-success .form-control { border-color:#3c763d; }
+    .bs3 .has-success label { color:#3c763d; }
+    .bs3 .checkbox label, .bs3 .radio label { font-weight:400; padding-left:20px; display:block; }
+    .bs3 .checkbox input, .bs3 .radio input { margin-left:-20px; margin-right:4px; }
+    .bs3 .btn { padding:6px 12px; font-size:14px; border-radius:4px; border:1px solid; cursor:pointer; }
+    .bs3 .btn-primary { background:#337ab7; border-color:#2e6da4; color:#fff; }
+    .bs3 .btn-default { background:#fff; border-color:#ccc; color:#333; }
+    .bs3 .form-inline { display:flex; align-items:flex-end; gap:8px; flex-wrap:wrap; }
+    .bs3 .form-inline .form-group { margin-bottom:0; }
+    .bs3 .input-group { display:flex; }
+    .bs3 .input-group-addon { padding:6px 12px; background:#eee; border:1px solid #ccc; border-right:none; border-radius:4px 0 0 4px; font-size:14px; color:#555; }
+    .bs3 .input-group .form-control { border-radius:0 4px 4px 0; }
+    .bs3 .input-group .input-group-btn button { padding:6px 12px; border:1px solid #ccc; background:#eee; border-left:none; border-radius:0 4px 4px 0; cursor:pointer; font-size:14px; }
+    .bs3 .form-control-lg { padding:10px 16px; font-size:18px; border-radius:6px; }
+    .bs3 .form-control-sm { padding:5px 10px; font-size:12px; border-radius:3px; }
+    .bs3 select.form-control { padding:6px 12px; }
+    /* custom-file */
+    .bs3 .custom-file { position:relative; }
+    .bs3 .custom-file-label { border:1px solid #ccc; border-radius:4px; padding:6px 12px; font-size:14px; color:#555; background:#fff; cursor:pointer; display:block; }
+    .bs3 .custom-file-label::after { content:"参照"; position:absolute; right:0; top:0; bottom:0; padding:6px 12px; background:#e9ecef; border-left:1px solid #ccc; border-radius:0 4px 4px 0; }
+    /* custom-range */
+    .bs3 .custom-range { width:100%; height:calc(1rem + 4px); background:transparent; }
+    /* custom-control */
+    .bs3 .custom-control { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .bs3 .custom-control-label { font-weight:400; font-size:14px; cursor:pointer; }
+    .bs3 .custom-switch { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:14px; }
   </style>
 </head>
 <body>
@@ -35,225 +55,375 @@
   <h1>Lesson 4：フォーム</h1>
   <ol class="breadcrumb" style="background:transparent;padding:4px 0;margin:0;font-size:.85rem;">
     <li><a href="../index.html" style="color:#adb5bd;">ガイドトップ</a></li>
-    <li class="active" style="color:#fff; padding-left:8px;">Lesson 4</li>
+    <li style="color:#fff;padding-left:8px;">Lesson 4</li>
   </ol>
 </div>
 
 <div style="display:flex; min-height:calc(100vh - 64px);">
 
-  <!-- ===== LEFT: Bootstrap 3 ===== -->
-  <div class="pane pane-bs3" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 3</span>
+<!-- ===== LEFT: Bootstrap 3 ===== -->
+<div class="pane pane-bs3 bs3" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 3</span>
+  <div class="note-box warn">form-group でラップ。バリデーション状態は親に has-error/has-success。jQuery 必須。</div>
 
-    <div class="note-box warn">
-      <strong>BS3 の特徴：</strong>
-      <code>form-group</code> で各フィールドをラップ。インラインフォームは <code>form-inline</code>。
-      バリデーション状態は <code>has-error</code> / <code>has-success</code> を親に付与。
-    </div>
-
-    <!-- 基本フォーム -->
-    <h4>1. 基本フォーム（form-group）</h4>
-    <form>
-      <div class="bs3-form-group">
-        <label for="email3">メールアドレス</label>
-        <input type="email" class="bs3-form-control" id="email3" placeholder="example@mail.com">
-        <span class="bs3-help-block">入力してください。</span>
-      </div>
-      <div class="bs3-form-group">
-        <label for="pass3">パスワード</label>
-        <input type="password" class="bs3-form-control" id="pass3" placeholder="パスワード">
-      </div>
-      <button class="bs3-btn bs3-btn-primary" type="submit">ログイン</button>
-    </form>
-    <div class="code-block">&lt;form&gt;
-  &lt;div class="<span class="hl-del">form-group</span>"&gt;
-    &lt;label for="email"&gt;メール&lt;/label&gt;
-    &lt;input type="email"
-           class="form-control" id="email"
-           placeholder="..."&gt;
-    &lt;span class="<span class="hl-del">help-block</span>"&gt;補足&lt;/span&gt;
-  &lt;/div&gt;
-  &lt;div class="<span class="hl-del">form-group</span>"&gt;
-    &lt;label&gt;パスワード&lt;/label&gt;
-    &lt;input type="password" class="form-control"&gt;
-  &lt;/div&gt;
-  &lt;button class="btn btn-primary"&gt;ログイン&lt;/button&gt;
-&lt;/form&gt;</div>
-
-    <hr class="divider">
-
-    <!-- バリデーション -->
-    <h4>2. バリデーション表示（has-error / has-success）</h4>
-    <form>
-      <div class="bs3-form-group" style="border-left:4px solid #a94442;padding-left:8px;">
-        <label>エラーフィールド</label>
-        <input class="bs3-form-control" style="border-color:#a94442;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);" value="間違った入力">
-        <span class="bs3-help-block" style="color:#a94442;">エラーメッセージ</span>
-      </div>
-      <div class="bs3-form-group" style="border-left:4px solid #3c763d;padding-left:8px;">
-        <label>成功フィールド</label>
-        <input class="bs3-form-control" style="border-color:#3c763d;" value="正しい入力">
-      </div>
-    </form>
-    <div class="code-block">&lt;div class="form-group <span class="hl-del">has-error</span>"&gt;
-  &lt;label&gt;エラー&lt;/label&gt;
+  <h4>1. 基本フォーム（form-group）</h4>
+  <div class="form-group">
+    <label for="e3">メールアドレス</label>
+    <input type="email" class="form-control" id="e3" placeholder="example@mail.com">
+    <span class="help-block">入力してください。</span>
+  </div>
+  <div class="form-group">
+    <label>パスワード</label>
+    <input type="password" class="form-control" placeholder="パスワード">
+  </div>
+  <button class="btn btn-primary">ログイン</button>
+  <div class="code-block">&lt;div class="<span class="hl-del">form-group</span>"&gt;
+  &lt;label&gt;メール&lt;/label&gt;
   &lt;input class="form-control"&gt;
-  &lt;span class="help-block"&gt;エラー文&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class="form-group <span class="hl-del">has-success</span>"&gt;
-  &lt;!-- 親要素にクラスを付与するスタイル --&gt;
+  &lt;span class="<span class="hl-del">help-block</span>"&gt;補足&lt;/span&gt;
 &lt;/div&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <!-- チェックボックス・ラジオ -->
-    <h4>3. チェックボックス・ラジオ</h4>
-    <form>
-      <div class="bs3-checkbox">
-        <label><input type="checkbox" checked> オプション A</label>
-      </div>
-      <div class="bs3-radio">
-        <label><input type="radio" name="r3" checked> 選択肢 1</label>
-      </div>
-      <div class="bs3-radio">
-        <label><input type="radio" name="r3"> 選択肢 2</label>
-      </div>
-    </form>
-    <div class="code-block">&lt;div class="<span class="hl-del">checkbox</span>"&gt;
+  <h4>2. バリデーション（親要素に has-error）</h4>
+  <div class="form-group has-error">
+    <label>エラーフィールド</label>
+    <input class="form-control" value="間違った入力">
+    <span class="help-block">エラーメッセージ</span>
+  </div>
+  <div class="form-group has-success">
+    <label>成功フィールド</label>
+    <input class="form-control" value="正しい入力">
+  </div>
+  <div class="code-block">&lt;div class="form-group <span class="hl-del">has-error</span>"&gt;
+  &lt;label&gt;エラー&lt;/label&gt;  &lt;!-- 親要素に付与 --&gt;
+  &lt;input class="form-control"&gt;
+  &lt;span class="help-block"&gt;メッセージ&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="form-group <span class="hl-del">has-success</span>"&gt;</div>
+
+  <hr class="divider">
+
+  <h4>3. チェックボックス・ラジオ</h4>
+  <div class="checkbox"><label><input type="checkbox" checked> オプション A</label></div>
+  <div class="checkbox"><label><input type="checkbox"> オプション B</label></div>
+  <div class="radio"><label><input type="radio" name="r3" checked> 選択肢 1</label></div>
+  <div class="radio"><label><input type="radio" name="r3"> 選択肢 2</label></div>
+  <div class="code-block">&lt;div class="<span class="hl-del">checkbox</span>"&gt;
   &lt;label&gt;&lt;input type="checkbox"&gt; A&lt;/label&gt;
 &lt;/div&gt;
 &lt;div class="<span class="hl-del">radio</span>"&gt;
   &lt;label&gt;&lt;input type="radio"&gt; 1&lt;/label&gt;
 &lt;/div&gt;</div>
 
-  </div>
+  <hr class="divider">
 
-  <!-- ===== RIGHT: Bootstrap 5 ===== -->
-  <div class="pane pane-bs5" style="flex:1; overflow-y:auto;">
-    <span class="pane-label">Bootstrap 5</span>
-
-    <div class="note-box">
-      <strong>BS5 の変更点：</strong>
-      <code>form-group</code> は廃止 → <code>mb-3</code> などのスペーシングで代替。
-      バリデーションは <code>is-invalid</code> / <code>is-valid</code> を直接 input に付与。
-      フローティングラベルが新登場。
+  <h4>4. インラインフォーム（form-inline）</h4>
+  <form class="form-inline">
+    <div class="form-group">
+      <label>名前</label>
+      <input class="form-control" placeholder="名前" style="width:120px;margin-left:6px;">
     </div>
-
-    <!-- 基本フォーム -->
-    <h4>1. 基本フォーム（mb-3 で代替）</h4>
-    <form>
-      <div class="mb-3">
-        <label for="email5" class="form-label">メールアドレス</label>
-        <input type="email" class="form-control" id="email5" placeholder="example@mail.com">
-        <div class="form-text">入力してください。</div>
-      </div>
-      <div class="mb-3">
-        <label for="pass5" class="form-label">パスワード</label>
-        <input type="password" class="form-control" id="pass5" placeholder="パスワード">
-      </div>
-      <button class="btn btn-primary" type="submit">ログイン</button>
-    </form>
-    <div class="code-block">&lt;form&gt;
-  &lt;div class="<span class="hl-add">mb-3</span>"&gt;  &lt;!-- form-group 廃止 --&gt;
-    &lt;label for="email" class="<span class="hl-add">form-label</span>"&gt;メール&lt;/label&gt;
-    &lt;input type="email"
-           class="form-control" id="email"
-           placeholder="..."&gt;
-    &lt;div class="<span class="hl-add">form-text</span>"&gt;補足&lt;/div&gt;
+    <div class="form-group" style="margin-left:8px;">
+      <label>メール</label>
+      <input class="form-control" placeholder="メール" style="width:140px;margin-left:6px;">
+    </div>
+    <button class="btn btn-primary" style="margin-left:8px;">送信</button>
+  </form>
+  <div class="code-block">&lt;form class="<span class="hl-del">form-inline</span>"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label&gt;名前&lt;/label&gt;
+    &lt;input class="form-control"&gt;
   &lt;/div&gt;
-  &lt;div class="mb-3"&gt;
-    &lt;label class="form-label"&gt;パスワード&lt;/label&gt;
-    &lt;input type="password" class="form-control"&gt;
-  &lt;/div&gt;
-  &lt;button class="btn btn-primary"&gt;ログイン&lt;/button&gt;
+  &lt;button class="btn btn-primary"&gt;送信&lt;/button&gt;
 &lt;/form&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <!-- バリデーション -->
-    <h4>2. バリデーション（is-invalid / is-valid）</h4>
-    <form>
-      <div class="mb-3">
-        <label class="form-label">エラーフィールド</label>
-        <input class="form-control is-invalid" value="間違った入力">
-        <div class="invalid-feedback">エラーメッセージ</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">成功フィールド</label>
-        <input class="form-control is-valid" value="正しい入力">
-        <div class="valid-feedback">OK</div>
-      </div>
-    </form>
-    <div class="code-block">&lt;input class="form-control <span class="hl-add">is-invalid</span>"&gt;
+  <h4>5. Input Group（BS3 addon）</h4>
+  <div class="input-group" style="margin-bottom:10px;">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" placeholder="ユーザー名">
+  </div>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="検索...">
+    <div class="input-group-btn"><button class="btn btn-default">検索</button></div>
+  </div>
+  <div class="code-block">&lt;div class="input-group"&gt;
+  &lt;span class="<span class="hl-del">input-group-addon</span>"&gt;@&lt;/span&gt;
+  &lt;input class="form-control"&gt;
+&lt;/div&gt;
+&lt;div class="input-group"&gt;
+  &lt;input class="form-control"&gt;
+  &lt;div class="<span class="hl-del">input-group-btn</span>"&gt;
+    &lt;button class="btn btn-default"&gt;検索&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. Range / Switch（custom-range / custom-switch）</h4>
+  <div class="form-group">
+    <label>スライダー</label>
+    <input type="range" class="custom-range" min="0" max="100">
+  </div>
+  <div class="custom-switch">
+    <input type="checkbox" id="sw3" checked>
+    <label for="sw3">スイッチ</label>
+  </div>
+  <div class="code-block">&lt;input type="range" class="<span class="hl-del">custom-range</span>"&gt;
+
+&lt;div class="<span class="hl-del">custom-control custom-switch</span>"&gt;
+  &lt;input type="checkbox" class="custom-control-input"
+         id="sw"&gt;
+  &lt;label class="custom-control-label" for="sw"&gt;
+    スイッチ
+  &lt;/label&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>7. ファイル入力（custom-file）</h4>
+  <div class="custom-file">
+    <div class="custom-file-label">ファイルを選択してください...</div>
+  </div>
+  <div class="code-block">&lt;div class="<span class="hl-del">custom-file</span>"&gt;
+  &lt;input type="file"
+         class="<span class="hl-del">custom-file-input</span>" id="file"&gt;
+  &lt;label class="<span class="hl-del">custom-file-label</span>" for="file"&gt;
+    ファイルを選択
+  &lt;/label&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>8. フォームサイズ</h4>
+  <input class="form-control form-control-lg" placeholder="form-control-lg" style="margin-bottom:6px;">
+  <input class="form-control" placeholder="通常" style="margin-bottom:6px;">
+  <input class="form-control form-control-sm" placeholder="form-control-sm">
+  <div class="code-block">&lt;input class="form-control <span class="hl-del">input-lg</span>"&gt;
+&lt;input class="form-control"&gt;
+&lt;input class="form-control <span class="hl-del">input-sm</span>"&gt;</div>
+</div>
+
+<!-- ===== RIGHT: Bootstrap 5 ===== -->
+<div class="pane pane-bs5" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 5</span>
+  <div class="note-box">form-group 廃止→mb-3。バリデーションは input 自身に。form-check 統一。フローティングラベル新登場。</div>
+
+  <h4>1. 基本フォーム（mb-3 で代替）</h4>
+  <div class="mb-3">
+    <label for="e5" class="form-label">メールアドレス</label>
+    <input type="email" class="form-control" id="e5" placeholder="example@mail.com">
+    <div class="form-text">入力してください。</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">パスワード</label>
+    <input type="password" class="form-control" placeholder="パスワード">
+  </div>
+  <button class="btn btn-primary">ログイン</button>
+  <div class="code-block">&lt;div class="<span class="hl-add">mb-3</span>"&gt;  &lt;!-- form-group 廃止 --&gt;
+  &lt;label class="<span class="hl-add">form-label</span>"&gt;メール&lt;/label&gt;
+  &lt;input class="form-control"&gt;
+  &lt;div class="<span class="hl-add">form-text</span>"&gt;補足&lt;/div&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>2. バリデーション（input に直接 is-invalid/is-valid）</h4>
+  <div class="mb-3">
+    <label class="form-label">エラーフィールド</label>
+    <input class="form-control is-invalid" value="間違った入力">
+    <div class="invalid-feedback">エラーメッセージ</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">成功フィールド</label>
+    <input class="form-control is-valid" value="正しい入力">
+    <div class="valid-feedback">OK！</div>
+  </div>
+  <div class="code-block">&lt;input class="form-control <span class="hl-add">is-invalid</span>"&gt;
 &lt;div class="<span class="hl-add">invalid-feedback</span>"&gt;エラー文&lt;/div&gt;
 
 &lt;input class="form-control <span class="hl-add">is-valid</span>"&gt;
 &lt;div class="<span class="hl-add">valid-feedback</span>"&gt;OK&lt;/div&gt;
+&lt;!-- input に直接付与（親要素不要）--&gt;</div>
 
-&lt;!-- input に直接クラスを付与（親要素不要） --&gt;</div>
+  <hr class="divider">
 
-    <hr class="divider">
-
-    <!-- チェックボックス・ラジオ -->
-    <h4>3. チェックボックス・ラジオ（form-check 統一）</h4>
-    <form>
-      <div class="form-check mb-2">
-        <input class="form-check-input" type="checkbox" id="chkA" checked>
-        <label class="form-check-label" for="chkA">オプション A</label>
-      </div>
-      <div class="form-check mb-2">
-        <input class="form-check-input" type="radio" name="r5" id="r51" checked>
-        <label class="form-check-label" for="r51">選択肢 1</label>
-      </div>
-      <div class="form-check mb-2">
-        <input class="form-check-input" type="radio" name="r5" id="r52">
-        <label class="form-check-label" for="r52">選択肢 2</label>
-      </div>
-    </form>
-    <div class="code-block">&lt;div class="<span class="hl-add">form-check</span>"&gt;
-  &lt;input class="<span class="hl-add">form-check-input</span>" type="checkbox" id="a"&gt;
-  &lt;label class="<span class="hl-add">form-check-label</span>" for="a"&gt;A&lt;/label&gt;
+  <h4>3. チェックボックス・ラジオ（form-check 統一）</h4>
+  <div class="form-check mb-1"><input class="form-check-input" type="checkbox" id="ckA" checked><label class="form-check-label" for="ckA">オプション A</label></div>
+  <div class="form-check mb-2"><input class="form-check-input" type="checkbox" id="ckB"><label class="form-check-label" for="ckB">オプション B</label></div>
+  <div class="form-check mb-1"><input class="form-check-input" type="radio" name="r5" id="r51" checked><label class="form-check-label" for="r51">選択肢 1</label></div>
+  <div class="form-check mb-2"><input class="form-check-input" type="radio" name="r5" id="r52"><label class="form-check-label" for="r52">選択肢 2</label></div>
+  <div class="code-block">&lt;div class="<span class="hl-add">form-check</span>"&gt;
+  &lt;input class="<span class="hl-add">form-check-input</span>"
+         type="checkbox" id="a"&gt;
+  &lt;label class="<span class="hl-add">form-check-label</span>" for="a"&gt;
+    A
+  &lt;/label&gt;
 &lt;/div&gt;
-&lt;div class="form-check"&gt;
-  &lt;input class="form-check-input" type="radio" id="r1"&gt;
-  &lt;label class="form-check-label" for="r1"&gt;1&lt;/label&gt;
+&lt;!-- radio も同じ form-check クラスを使用 --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. インラインフォーム（form-inline 廃止 → row + col-auto）</h4>
+  <form class="row g-2 align-items-end mb-2">
+    <div class="col-auto">
+      <label class="form-label">名前</label>
+      <input class="form-control" placeholder="名前">
+    </div>
+    <div class="col-auto">
+      <label class="form-label">メール</label>
+      <input class="form-control" placeholder="メール">
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary">送信</button>
+    </div>
+  </form>
+  <div class="code-block">&lt;!-- form-inline 廃止 → row + col-auto --&gt;
+&lt;form class="<span class="hl-add">row g-3 align-items-end</span>"&gt;
+  &lt;div class="<span class="hl-add">col-auto</span>"&gt;
+    &lt;label class="form-label"&gt;名前&lt;/label&gt;
+    &lt;input class="form-control"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-auto"&gt;
+    &lt;button class="btn btn-primary"&gt;送信&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</div>
+
+  <hr class="divider">
+
+  <h4>5. Input Group（addon → input-group-text）</h4>
+  <div class="input-group mb-2">
+    <span class="input-group-text">@</span>
+    <input type="text" class="form-control" placeholder="ユーザー名">
+  </div>
+  <div class="input-group mb-2">
+    <input type="text" class="form-control" placeholder="検索...">
+    <button class="btn btn-outline-secondary">検索</button>
+  </div>
+  <div class="input-group mb-2">
+    <span class="input-group-text">¥</span>
+    <input type="number" class="form-control">
+    <span class="input-group-text">.00</span>
+  </div>
+  <div class="code-block">&lt;div class="input-group"&gt;
+  &lt;span class="<span class="hl-add">input-group-text</span>"&gt;@&lt;/span&gt;
+  &lt;input class="form-control"&gt;
+&lt;/div&gt;
+&lt;!-- input-group-addon → input-group-text --&gt;
+&lt;!-- input-group-btn → 直接 button を並べる --&gt;
+
+&lt;!-- 両側テキスト --&gt;
+&lt;div class="input-group"&gt;
+  &lt;span class="input-group-text"&gt;¥&lt;/span&gt;
+  &lt;input class="form-control"&gt;
+  &lt;span class="input-group-text"&gt;.00&lt;/span&gt;
 &lt;/div&gt;</div>
 
-    <hr class="divider">
+  <hr class="divider">
 
-    <!-- フローティングラベル（BS5 新機能） -->
-    <h4>4. フローティングラベル（BS5 新機能）</h4>
-    <form>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatEmail" placeholder="name@example.com">
-        <label for="floatEmail">メールアドレス</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatPass" placeholder="Password">
-        <label for="floatPass">パスワード</label>
-      </div>
-      <div class="form-floating">
-        <select class="form-select" id="floatSelect">
-          <option selected>選んでください</option>
-          <option value="1">選択肢 1</option>
-          <option value="2">選択肢 2</option>
-        </select>
-        <label for="floatSelect">カテゴリ</label>
-      </div>
-    </form>
-    <div class="code-block">&lt;!-- BS5 新機能：フローティングラベル --&gt;
+  <h4>6. Range / Switch（form-range / form-check form-switch）</h4>
+  <div class="mb-3">
+    <label class="form-label">スライダー</label>
+    <input type="range" class="form-range">
+  </div>
+  <div class="form-check form-switch mb-2">
+    <input class="form-check-input" type="checkbox" id="sw5" checked>
+    <label class="form-check-label" for="sw5">スイッチ ON</label>
+  </div>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="sw6">
+    <label class="form-check-label" for="sw6">スイッチ OFF</label>
+  </div>
+  <div class="code-block">&lt;!-- custom-range → form-range --&gt;
+&lt;input type="range" class="<span class="hl-add">form-range</span>"&gt;
+
+&lt;!-- custom-switch → form-check form-switch --&gt;
+&lt;div class="form-check <span class="hl-add">form-switch</span>"&gt;
+  &lt;input class="<span class="hl-add">form-check-input</span>"
+         type="checkbox" id="sw"&gt;
+  &lt;label class="form-check-label" for="sw"&gt;
+    スイッチ
+  &lt;/label&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>7. ファイル入力（custom-file 廃止）</h4>
+  <div class="mb-3">
+    <label for="file5" class="form-label">ファイルを選択</label>
+    <input class="form-control" type="file" id="file5">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">複数ファイル</label>
+    <input class="form-control" type="file" multiple>
+  </div>
+  <div class="code-block">&lt;!-- custom-file 廃止 → form-control type="file" --&gt;
+&lt;input class="<span class="hl-add">form-control</span>"
+       type="file" id="file"&gt;
+
+&lt;!-- 複数選択 --&gt;
+&lt;input class="form-control"
+       type="file" <span class="hl-add">multiple</span>&gt;</div>
+
+  <hr class="divider">
+
+  <h4>8. フォームサイズ（クラス名変更）</h4>
+  <input class="form-control form-control-lg mb-2" placeholder="form-control-lg">
+  <input class="form-control mb-2" placeholder="通常">
+  <input class="form-control form-control-sm mb-2" placeholder="form-control-sm">
+  <select class="form-select form-select-lg mb-2"><option>form-select-lg</option></select>
+  <select class="form-select mb-2"><option>通常 form-select</option></select>
+  <select class="form-select form-select-sm"><option>form-select-sm</option></select>
+  <div class="code-block">&lt;!-- input-lg/sm → form-control-lg/sm --&gt;
+&lt;input class="form-control <span class="hl-add">form-control-lg</span>"&gt;
+&lt;input class="form-control <span class="hl-add">form-control-sm</span>"&gt;
+
+&lt;!-- select: form-control → form-select --&gt;
+&lt;select class="<span class="hl-add">form-select</span>"&gt;
+&lt;select class="form-select <span class="hl-add">form-select-lg</span>"&gt;
+&lt;select class="form-select <span class="hl-add">form-select-sm</span>"&gt;</div>
+
+  <hr class="divider">
+
+  <h4>9. フローティングラベル（BS5 新機能）</h4>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="flEmail" placeholder="dummy">
+    <label for="flEmail">メールアドレス</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="flPass" placeholder="dummy">
+    <label for="flPass">パスワード</label>
+  </div>
+  <div class="form-floating mb-3">
+    <select class="form-select" id="flSel">
+      <option selected>選んでください</option>
+      <option>選択肢 1</option>
+      <option>選択肢 2</option>
+    </select>
+    <label for="flSel">カテゴリ</label>
+  </div>
+  <div class="form-floating">
+    <textarea class="form-control" id="flText" placeholder="dummy" style="height:80px;"></textarea>
+    <label for="flText">コメント</label>
+  </div>
+  <div class="code-block">&lt;!-- BS5 新機能：フローティングラベル --&gt;
+&lt;!-- placeholder 属性が必須（位置制御に使用） --&gt;
 &lt;div class="<span class="hl-add">form-floating</span> mb-3"&gt;
   &lt;input type="email" class="form-control"
-         id="floatEmail"
-         placeholder="name@example.com"&gt;
-  &lt;label for="floatEmail"&gt;メール&lt;/label&gt;
+         id="email" placeholder="dummy"&gt;
+  &lt;label for="email"&gt;メールアドレス&lt;/label&gt;
 &lt;/div&gt;
-&lt;!-- placeholder 属性が必須（ラベル位置制御に使用） --&gt;</div>
 
-  </div>
-
+&lt;!-- select / textarea にも対応 --&gt;
+&lt;div class="form-floating"&gt;
+  &lt;select class="form-select" id="sel"&gt;...&lt;/select&gt;
+  &lt;label for="sel"&gt;カテゴリ&lt;/label&gt;
+&lt;/div&gt;</div>
 </div>
 
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

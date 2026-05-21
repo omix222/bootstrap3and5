@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 7: コンポーネント | Bootstrap 移行ガイド</title>
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+    .demo-box { border:2px dashed #dee2e6; border-radius:8px; padding:14px; margin-bottom:14px; }
+
+    /* BS3 Badge */
+    .bs3-badge { display:inline-block; padding:2px 6px; font-size:75%; font-weight:700; line-height:1; color:#fff; border-radius:10px; background:#777; }
+    .bs3-badge.primary { background:#337ab7; }
+    .bs3-badge.success { background:#5cb85c; }
+    .bs3-badge.danger  { background:#d9534f; }
+    .bs3-label { display:inline-block; padding:2px 6px; font-size:75%; font-weight:700; color:#fff; border-radius:4px; background:#777; }
+    .bs3-label.primary { background:#337ab7; }
+    .bs3-label.pill { border-radius:10px; }
+
+    /* BS3 Alert */
+    .bs3-alert { padding:15px; margin-bottom:16px; border:1px solid transparent; border-radius:4px; font-size:14px; }
+    .bs3-alert.success { background:#dff0d8; border-color:#d6e9c6; color:#3c763d; }
+    .bs3-alert.danger  { background:#f2dede; border-color:#ebccd1; color:#a94442; }
+    .bs3-alert.info    { background:#d9edf7; border-color:#bce8f1; color:#31708f; }
+    .bs3-alert.warning { background:#fcf8e3; border-color:#faebcc; color:#8a6d3b; }
+    .bs3-alert .close  { float:right; font-size:20px; line-height:1; color:#000; opacity:.2; background:none; border:none; cursor:pointer; }
+
+    /* BS3 Progress */
+    .bs3-progress { background:#f5f5f5; border-radius:4px; overflow:hidden; height:20px; margin-bottom:10px; box-shadow:inset 0 1px 2px rgba(0,0,0,.1); }
+    .bs3-progress .bar { height:100%; background:#337ab7; border-radius:4px; display:flex; align-items:center; padding:0 8px; color:#fff; font-size:12px; }
+    .bs3-progress .bar.success { background:#5cb85c; }
+    .bs3-progress .bar.danger  { background:#d9534f; }
+    .bs3-progress .bar.warning { background:#f0ad4e; }
+
+    /* BS3 List Group */
+    .bs3-lg { list-style:none; padding:0; margin-bottom:10px; }
+    .bs3-lg li { padding:10px 15px; border:1px solid #ddd; border-top:none; font-size:13px; display:flex; justify-content:space-between; }
+    .bs3-lg li:first-child { border-top:1px solid #ddd; border-radius:4px 4px 0 0; }
+    .bs3-lg li:last-child { border-radius:0 0 4px 4px; }
+    .bs3-lg li.active { background:#337ab7; border-color:#337ab7; color:#fff; }
+
+    /* BS3 Breadcrumb */
+    .bs3-bc { background:#f5f5f5; padding:8px 15px; list-style:none; border-radius:4px; margin:0; display:flex; }
+    .bs3-bc li + li::before { content:"/"; padding:0 8px; color:#ccc; }
+    .bs3-bc li a { color:#337ab7; text-decoration:none; font-size:13px; }
+    .bs3-bc li.active { color:#777; font-size:13px; }
+  </style>
+</head>
+<body>
+
+<div class="compare-header">
+  <h1>Lesson 7：コンポーネント（Badge / Alert / Button / Spinner ほか）</h1>
+  <ol class="breadcrumb" style="background:transparent;padding:4px 0;margin:0;font-size:.85rem;">
+    <li><a href="../index.html" style="color:#adb5bd;">ガイドトップ</a></li>
+    <li style="color:#fff;padding-left:8px;">Lesson 7</li>
+  </ol>
+</div>
+
+<div style="display:flex; min-height:calc(100vh - 64px);">
+
+<!-- ===== LEFT: Bootstrap 3 ===== -->
+<div class="pane pane-bs3" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 3</span>
+  <div class="note-box warn">badge と label が別コンポーネント。alert の閉じるボタンは jQuery 依存。Spinner は存在しない。</div>
+
+  <h4>1. Badge と Label（別コンポーネント）</h4>
+  <div class="demo-box">
+    <p>通知数: <span class="bs3-badge">4</span>
+       メール: <span class="bs3-badge primary">12</span>
+       エラー: <span class="bs3-badge danger">!</span></p>
+    <p>ラベル:
+      <span class="bs3-label">デフォルト</span>
+      <span class="bs3-label primary">Primary</span>
+      <span class="bs3-label pill">ピル型</span>
+    </p>
+  </div>
+  <div class="code-block">&lt;!-- Badge: 数値バッジ（丸型） --&gt;
+&lt;span class="<span class="hl-del">badge</span>"&gt;4&lt;/span&gt;
+
+&lt;!-- Label: テキストラベル（角丸） --&gt;
+&lt;span class="<span class="hl-del">label label-primary</span>"&gt;Primary&lt;/span&gt;
+&lt;span class="<span class="hl-del">label label-default</span>"&gt;Default&lt;/span&gt;
+&lt;span class="<span class="hl-del">label label-success</span>"&gt;Success&lt;/span&gt;
+&lt;span class="<span class="hl-del">label label-pill</span>"&gt;角丸&lt;/span&gt;</div>
+
+  <hr class="divider">
+
+  <h4>2. Alert（data-dismiss / jQuery 依存）</h4>
+  <div class="bs3-alert success">
+    <button class="close">&times;</button>
+    <strong>成功！</strong> 操作が完了しました。
+  </div>
+  <div class="bs3-alert danger">
+    <strong>エラー！</strong> 問題が発生しました。
+  </div>
+  <div class="bs3-alert info">情報メッセージ</div>
+  <div class="bs3-alert warning">警告メッセージ</div>
+  <div class="code-block">&lt;div class="alert <span class="hl-del">alert-success</span> alert-dismissible"&gt;
+  &lt;button type="button" class="<span class="hl-del">close</span>"
+          <span class="hl-del">data-dismiss="alert"</span>&gt;
+    &lt;span&gt;&amp;times;&lt;/span&gt;
+  &lt;/button&gt;
+  メッセージ
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>3. Button（btn-block / btn-xs）</h4>
+  <div class="demo-box">
+    <button style="padding:10px 16px;font-size:18px;background:#337ab7;color:#fff;border:none;border-radius:6px;margin-bottom:6px;">btn-lg</button>
+    <button style="padding:6px 12px;font-size:14px;background:#337ab7;color:#fff;border:none;border-radius:4px;margin-bottom:6px;">通常</button>
+    <button style="padding:5px 10px;font-size:12px;background:#337ab7;color:#fff;border:none;border-radius:3px;margin-bottom:6px;">btn-sm</button>
+    <button style="padding:1px 5px;font-size:12px;background:#337ab7;color:#fff;border:none;border-radius:3px;margin-bottom:6px;">btn-xs</button>
+    <button style="display:block;width:100%;padding:6px;background:#5cb85c;color:#fff;border:none;border-radius:4px;">btn-block（全幅）</button>
+  </div>
+  <div class="code-block">&lt;button class="btn btn-primary <span class="hl-del">btn-lg</span>"&gt;大&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;通常&lt;/button&gt;
+&lt;button class="btn btn-primary <span class="hl-del">btn-sm</span>"&gt;小&lt;/button&gt;
+&lt;button class="btn btn-primary <span class="hl-del">btn-xs</span>"&gt;極小&lt;/button&gt;
+
+&lt;!-- 全幅 --&gt;
+&lt;button class="btn btn-primary <span class="hl-del">btn-block</span>"&gt;全幅&lt;/button&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. Progress Bar（aria 属性が古い）</h4>
+  <div class="bs3-progress"><div class="bar" style="width:60%">60%</div></div>
+  <div class="bs3-progress"><div class="bar success" style="width:80%">80%</div></div>
+  <div class="bs3-progress"><div class="bar danger"  style="width:30%">30%</div></div>
+  <div class="bs3-progress" style="height:8px;"><div class="bar" style="width:50%;height:8px;"></div></div>
+  <div class="code-block">&lt;div class="progress"&gt;
+  &lt;div class="<span class="hl-del">progress-bar</span>"
+       role="progressbar"
+       style="width:60%"
+       aria-valuenow="60"
+       aria-valuemin="0"
+       aria-valuemax="100"&gt;
+    60%
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- BS3 は aria-* を手動管理 --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>5. List Group（li に active を直接付与）</h4>
+  <ul class="bs3-lg">
+    <li class="active">アクティブ項目 <span class="bs3-badge">14</span></li>
+    <li>通常の項目</li>
+    <li>通常の項目</li>
+    <li style="color:#aaa;">無効な項目</li>
+  </ul>
+  <div class="code-block">&lt;ul class="list-group"&gt;
+  &lt;li class="list-group-item <span class="hl-del">active</span>"&gt;
+    アクティブ &lt;span class="badge"&gt;14&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="list-group-item"&gt;通常&lt;/li&gt;
+  &lt;li class="list-group-item <span class="hl-del">disabled</span>"&gt;無効&lt;/li&gt;
+&lt;/ul&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. Breadcrumb</h4>
+  <ul class="bs3-bc">
+    <li><a href="#">ホーム</a></li>
+    <li><a href="#">カテゴリ</a></li>
+    <li class="active">現在のページ</li>
+  </ul>
+  <div class="code-block">&lt;ol class="breadcrumb"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;ホーム&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;カテゴリ&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="<span class="hl-del">active</span>"&gt;現在のページ&lt;/li&gt;
+&lt;/ol&gt;</div>
+
+  <hr class="divider">
+
+  <h4>7. Spinner（Bootstrap 3 に存在しない）</h4>
+  <div class="code-block">&lt;!-- BS3 に Spinner コンポーネントは存在しない --&gt;
+&lt;!-- Font Awesome や CSS アニメーションで自前実装 --&gt;
+&lt;i class="fa fa-spinner fa-spin"&gt;&lt;/i&gt;</div>
+</div>
+
+<!-- ===== RIGHT: Bootstrap 5 ===== -->
+<div class="pane pane-bs5" style="flex:1;overflow-y:auto;">
+  <span class="pane-label">Bootstrap 5</span>
+  <div class="note-box">badge と label を badge に統合。alert は btn-close + data-bs-dismiss に。Spinner が新登場。</div>
+
+  <h4>1. Badge（label と統合・bg-* で色指定）</h4>
+  <div class="demo-box">
+    <p>通知数: <span class="badge bg-secondary">4</span>
+       メール: <span class="badge bg-primary">12</span>
+       エラー: <span class="badge bg-danger">!</span></p>
+    <p>
+      <span class="badge bg-primary">Primary</span>
+      <span class="badge bg-success">Success</span>
+      <span class="badge bg-warning text-dark">Warning</span>
+      <span class="badge bg-info text-dark">Info</span>
+      <span class="badge bg-dark">Dark</span>
+    </p>
+    <p>ピル型:
+      <span class="badge rounded-pill bg-primary">Primary</span>
+      <span class="badge rounded-pill bg-danger">Danger</span>
+    </p>
+    <p>ボタン内バッジ:
+      <button class="btn btn-primary btn-sm">
+        受信トレイ <span class="badge bg-danger">9</span>
+      </button>
+    </p>
+  </div>
+  <div class="code-block">&lt;!-- badge + bg-* で色指定（label 廃止・統合） --&gt;
+&lt;span class="badge <span class="hl-add">bg-primary</span>"&gt;Primary&lt;/span&gt;
+&lt;span class="badge <span class="hl-add">bg-secondary</span>"&gt;Secondary&lt;/span&gt;
+&lt;span class="badge <span class="hl-add">bg-success</span>"&gt;Success&lt;/span&gt;
+&lt;span class="badge <span class="hl-add">bg-danger</span>"&gt;Danger&lt;/span&gt;
+
+&lt;!-- ピル型（label-pill → rounded-pill） --&gt;
+&lt;span class="badge <span class="hl-add">rounded-pill</span> bg-primary"&gt;ピル&lt;/span&gt;
+
+&lt;!-- ボタン内バッジ --&gt;
+&lt;button class="btn btn-primary"&gt;
+  受信 &lt;span class="badge bg-danger"&gt;9&lt;/span&gt;
+&lt;/button&gt;</div>
+
+  <hr class="divider">
+
+  <h4>2. Alert（btn-close + data-bs-dismiss）</h4>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>成功！</strong> 操作が完了しました。
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  <div class="alert alert-danger" role="alert"><strong>エラー！</strong> 問題が発生しました。</div>
+  <div class="alert alert-info" role="alert">情報メッセージ</div>
+  <div class="alert alert-warning" role="alert">警告メッセージ</div>
+  <div class="code-block">&lt;div class="alert alert-success alert-dismissible
+     <span class="hl-add">fade show</span>" role="alert"&gt;
+  &lt;strong&gt;成功！&lt;/strong&gt; メッセージ
+  &lt;button type="button" class="<span class="hl-add">btn-close</span>"
+          <span class="hl-add">data-bs-dismiss="alert"</span>&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- jQuery 不要。fade show でアニメーション --&gt;</div>
+
+  <hr class="divider">
+
+  <h4>3. Button（btn-xs 廃止・btn-block 廃止）</h4>
+  <div class="demo-box">
+    <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+      <button class="btn btn-primary btn-lg">btn-lg</button>
+      <button class="btn btn-primary">通常</button>
+      <button class="btn btn-primary btn-sm">btn-sm</button>
+      <button class="btn btn-outline-primary">outline</button>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-success">全幅ボタン（d-grid）</button>
+    </div>
+  </div>
+  <div class="code-block">&lt;button class="btn btn-primary btn-lg"&gt;大&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;通常&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;小&lt;/button&gt;
+&lt;!-- btn-xs は廃止 --&gt;
+
+&lt;!-- outline バリアント（BS3と同様） --&gt;
+&lt;button class="btn <span class="hl-add">btn-outline-primary</span>"&gt;
+
+&lt;!-- btn-block 廃止 → d-grid --&gt;
+&lt;div class="<span class="hl-add">d-grid</span>"&gt;
+  &lt;button class="btn btn-primary"&gt;全幅&lt;/button&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>4. Progress Bar（aria 属性の変更）</h4>
+  <div class="progress mb-2">
+    <div class="progress-bar" style="width:60%">60%</div>
+  </div>
+  <div class="progress mb-2">
+    <div class="progress-bar bg-success" style="width:80%">80%</div>
+  </div>
+  <div class="progress mb-2">
+    <div class="progress-bar bg-danger" style="width:30%">30%</div>
+  </div>
+  <div class="progress mb-2" style="height:8px;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:50%"></div>
+  </div>
+  <div class="code-block">&lt;div class="progress"&gt;
+  &lt;div class="progress-bar <span class="hl-add">bg-success</span>"
+       role="progressbar"
+       style="width:80%"
+       <span class="hl-add">aria-label="80%"</span>
+       aria-valuenow="80"
+       aria-valuemin="0" aria-valuemax="100"&gt;
+    80%
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- アニメーションストライプ --&gt;
+&lt;div class="progress-bar
+     <span class="hl-add">progress-bar-striped progress-bar-animated</span>"&gt;</div>
+
+  <hr class="divider">
+
+  <h4>5. List Group（active / disabled を a タグで表現）</h4>
+  <ul class="list-group mb-2">
+    <li class="list-group-item active d-flex justify-content-between align-items-center">
+      アクティブ項目
+      <span class="badge bg-primary rounded-pill">14</span>
+    </li>
+    <li class="list-group-item">通常の項目</li>
+    <li class="list-group-item list-group-item-success">Success カラー</li>
+    <li class="list-group-item list-group-item-danger">Danger カラー</li>
+    <li class="list-group-item disabled" aria-disabled="true">無効な項目</li>
+  </ul>
+  <div class="list-group mb-2">
+    <a href="#" class="list-group-item list-group-item-action active">リンク（active）</a>
+    <a href="#" class="list-group-item list-group-item-action">リンク</a>
+    <button class="list-group-item list-group-item-action">ボタン型</button>
+  </div>
+  <div class="code-block">&lt;ul class="list-group"&gt;
+  &lt;li class="list-group-item active
+             d-flex justify-content-between"&gt;
+    アクティブ
+    &lt;span class="badge bg-primary <span class="hl-add">rounded-pill</span>"&gt;14&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="list-group-item <span class="hl-add">list-group-item-success</span>"&gt;
+    カラーバリアント
+  &lt;/li&gt;
+  &lt;li class="list-group-item disabled"
+       <span class="hl-add">aria-disabled="true"</span>&gt;無効&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- ボタン/リンク型 --&gt;
+&lt;div class="list-group"&gt;
+  &lt;a class="list-group-item <span class="hl-add">list-group-item-action</span>"&gt;
+    クリッカブル
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+
+  <hr class="divider">
+
+  <h4>6. Breadcrumb（active を li ではなく aria-current で）</h4>
+  <nav aria-label="breadcrumb" class="mb-2">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">ホーム</a></li>
+      <li class="breadcrumb-item"><a href="#">カテゴリ</a></li>
+      <li class="breadcrumb-item active" aria-current="page">現在のページ</li>
+    </ol>
+  </nav>
+  <div class="code-block">&lt;nav aria-label="breadcrumb"&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li class="<span class="hl-add">breadcrumb-item</span>"&gt;
+      &lt;a href="#"&gt;ホーム&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="breadcrumb-item"&gt;
+      &lt;a href="#"&gt;カテゴリ&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="breadcrumb-item active"
+        <span class="hl-add">aria-current="page"</span>&gt;
+      現在のページ
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</div>
+
+  <hr class="divider">
+
+  <h4>7. Spinner（BS5 新機能）</h4>
+  <div class="demo-box d-flex flex-wrap gap-3 align-items-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-success" role="status"></div>
+    <div class="spinner-border text-danger" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-warning" role="status"></div>
+    <div class="spinner-border spinner-border-sm text-dark" role="status"></div>
+    <button class="btn btn-primary" disabled>
+      <span class="spinner-border spinner-border-sm me-1"></span>
+      読み込み中...
+    </button>
+  </div>
+  <div class="code-block">&lt;!-- BS5 新機能：Spinner コンポーネント --&gt;
+
+&lt;!-- 回転型 --&gt;
+&lt;div class="<span class="hl-add">spinner-border</span> text-primary" role="status"&gt;
+  &lt;span class="visually-hidden"&gt;Loading...&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 拡大型 --&gt;
+&lt;div class="<span class="hl-add">spinner-grow</span> text-success" role="status"&gt;&lt;/div&gt;
+
+&lt;!-- 小サイズ --&gt;
+&lt;div class="spinner-border <span class="hl-add">spinner-border-sm</span>"&gt;&lt;/div&gt;
+
+&lt;!-- ボタン内に埋め込み --&gt;
+&lt;button class="btn btn-primary" disabled&gt;
+  &lt;span class="spinner-border spinner-border-sm"&gt;&lt;/span&gt;
+  読み込み中...
+&lt;/button&gt;</div>
+
+  <hr class="divider">
+
+  <h4>8. Placeholder（ローディングスケルトン）BS5 新機能</h4>
+  <div class="card mb-3" style="max-width:320px;">
+    <div class="card-body">
+      <h5 class="card-title placeholder-glow">
+        <span class="placeholder col-6"></span>
+      </h5>
+      <p class="card-text placeholder-glow">
+        <span class="placeholder col-7"></span>
+        <span class="placeholder col-4"></span>
+        <span class="placeholder col-8"></span>
+      </p>
+      <a class="btn btn-primary disabled placeholder col-4" aria-disabled="true"></a>
+    </div>
+  </div>
+  <div class="code-block">&lt;!-- BS5 新機能：Placeholder（スケルトン UI） --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title <span class="hl-add">placeholder-glow</span>"&gt;
+      &lt;span class="<span class="hl-add">placeholder</span> col-6"&gt;&lt;/span&gt;
+    &lt;/h5&gt;
+    &lt;p class="placeholder-glow"&gt;
+      &lt;span class="placeholder col-7"&gt;&lt;/span&gt;
+      &lt;span class="placeholder col-4"&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;!-- placeholder-wave もある --&gt;
+    &lt;a class="btn btn-primary disabled <span class="hl-add">placeholder</span> col-4"
+       aria-disabled="true"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
