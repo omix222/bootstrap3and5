@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap 5.3 Ultimate Showcase (Portable)</title>
+    <!-- Google Fonts: Outfit & Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Custom Style Sheet -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- SVG Icons for theme switch -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.282 7.277a7.317 7.317 0 0 0 2.752-.54 1.91 1.91 0 0 1 .882-.074 1.25 1.25 0 0 1 .98 1.687 7.496 7.496 0 0 1-3.473 3.613 7.486 7.486 0 0 1-10.458-3.49A7.5 7.5 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <!-- Top Navbar -->
+    <header class="navbar navbar-expand-md sticky-top bg-body-tertiary border-bottom px-3 py-2">
+      <div class="container-fluid px-0">
+        <!-- Sidebar Toggle (Mobile) -->
+        <button class="navbar-toggler d-md-none border-0 p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list fs-3"></i>
+        </button>
+
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-extrabold text-gradient" href="#">
+          <i class="bi bi-bootstrap-fill fs-3 text-primary"></i>
+          <span class="d-none d-sm-inline">Bootstrap 5.3 Showcase</span>
+        </a>
+
+        <!-- Right Side: Color mode toggle & Github link -->
+        <div class="d-flex align-items-center gap-3 ms-auto">
+          <!-- Color mode selector -->
+          <div class="dropdown" id="bd-theme">
+            <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2 px-3 py-1.5 rounded-pill" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+              <svg class="bi my-1 theme-icon-active" width="16" height="16"><use href="#circle-half"></use></svg>
+              <span class="d-none d-md-inline" id="bd-theme-text">カラーモード</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center gap-2 active" data-bs-theme-value="light" aria-pressed="true">
+                  <svg class="bi" width="16" height="16"><use href="#sun-fill"></use></svg>
+                  ライト
+                  <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-bs-theme-value="dark" aria-pressed="false">
+                  <svg class="bi" width="16" height="16"><use href="#moon-stars-fill"></use></svg>
+                  ダーク
+                  <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-bs-theme-value="auto" aria-pressed="false">
+                  <svg class="bi" width="16" height="16"><use href="#circle-half"></use></svg>
+                  オート
+                  <svg class="bi ms-auto d-none" width="16" height="16"><use href="#check2"></use></svg>
+                </button>
+              </li>
+            </ul>
+          </div>
+          
+          <a href="https://getbootstrap.com/docs/5.3/" target="_blank" class="btn btn-primary rounded-pill d-none d-sm-flex align-items-center gap-2 px-3 py-1.5 fw-bold">
+            <i class="bi bi-book"></i>公式ドキュメント
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- Sidebar (Offcanvas on Mobile, Sidebar on Desktop) -->
+        <aside class="col-md-3 col-lg-2 p-0 border-end bg-body-tertiary offcanvas-md offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+          <div class="offcanvas-header border-bottom d-md-none">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">ナビゲーション</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+          </div>
+          
+          <div class="offcanvas-body p-3 sticky-sidebar">
+            <nav id="navbar-spy" class="nav nav-pills flex-column gap-1 w-100">
+              <a class="nav-link d-flex align-items-center gap-2 active" href="#dashboard">
+                <i class="bi bi-speedometer2"></i>ダッシュボード
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#color-modes">
+                <i class="bi bi-palette"></i>カラーモード (5.3)
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#grid-layout">
+                <i class="bi bi-grid-3x3-gap"></i>レイアウト & グリッド
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#forms">
+                <i class="bi bi-input-cursor-text"></i>フォーム & 検証
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#basic-components">
+                <i class="bi bi-menu-button-wide"></i>基本コンポーネント
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#interactive-components">
+                <i class="bi bi-lightning-charge"></i>JSコンポーネント
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#helpers-utilities">
+                <i class="bi bi-sliders"></i>ヘルパー & ユーティリティ
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 scroll-container" data-bs-spy="scroll" data-bs-target="#navbar-spy" data-bs-offset="100" data-bs-smooth-scroll="true" tabindex="0">
+          
+          <!-- SECTION 1: Dashboard -->
+          <section id="dashboard" class="mb-5 scroll-mt">
+            <div class="p-5 mb-4 rounded-4 bg-body-secondary shadow-sm position-relative overflow-hidden jumbotron-gradient">
+              <div class="position-absolute top-0 end-0 opacity-10 p-4 d-none d-lg-block">
+                <i class="bi bi-bootstrap-reboot text-white" style="font-size: 15rem;"></i>
+              </div>
+              <div class="container-fluid py-3 position-relative z-1">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-3 fw-bold text-uppercase tracking-wider">Showcase App</span>
+                <h1 class="display-4 fw-extrabold text-white text-shadow-sm font-outfit">Bootstrap 5.3 Ultimate</h1>
+                <p class="col-md-8 fs-4 text-white-50">Bootstrap 5.3のすべての機能、新しいカラーモード、コンポーネント、ユーティリティ、フォーム、JSプラグインをビジュアルとインタラクティブなデモで完全に網羅したプレミアムデモアプリへようこそ。</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a href="#color-modes" class="btn btn-light btn-lg px-4 py-2 rounded-pill fw-bold text-primary shadow-sm hover-up">
+                    <i class="bi bi-stars me-2"></i>5.3新機能を体験
+                  </a>
+                  <button type="button" class="btn btn-outline-light btn-lg px-4 py-2 rounded-pill fw-bold hover-up" data-bs-toggle="modal" data-bs-target="#welcomeModal">
+                    <i class="bi bi-info-circle me-2"></i>このアプリについて
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dashboard Row 1: CSS Variables Live Control -->
+            <div class="row g-4 mb-4">
+              <div class="col-xl-8">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="card-title fw-bold m-0 d-flex align-items-center gap-2">
+                        <i class="bi bi-sliders2-vertical text-primary"></i>
+                        CSS変数 (CSS Variables) リアルタイム操作デモ
+                      </h4>
+                      <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Interactive</span>
+                    </div>
+                    <p class="text-body-secondary">Bootstrap 5.3はCSS変数を大幅に拡張しました。スライダーを使って、リアルタイムでテーマカラーやフォントサイズを動的に変更するデモを体験できます。</p>
+                    
+                    <div class="row g-4 mt-2">
+                      <div class="col-md-6">
+                        <label for="primaryHue" class="form-label fw-medium d-flex justify-content-between">
+                          <span>プライマリテーマ色 (Hue)</span>
+                          <span id="primaryHueVal" class="text-primary fw-bold">250</span>
+                        </label>
+                        <input type="range" class="form-range" id="primaryHue" min="0" max="360" value="250">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="borderRadius" class="form-label fw-medium d-flex justify-content-between">
+                          <span>角丸サイズ (Border Radius)</span>
+                          <span id="borderRadiusVal" class="text-primary fw-bold">0.5rem</span>
+                        </label>
+                        <input type="range" class="form-range" id="borderRadius" min="0" max="2" step="0.1" value="0.5">
+                      </div>
+                    </div>
+
+                    <div class="alert alert-primary d-flex align-items-center gap-2 mt-4 rounded-3 border-0 transition-all shadow-sm" id="cssVarPreview">
+                      <i class="bi bi-info-circle-fill fs-5"></i>
+                      <div>このアラートやアプリ内のボタン、カードの角丸がリアルタイムで変化します！</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick stats / Key changes in 5.3 -->
+              <div class="col-xl-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100 card-gradient-primary text-white">
+                  <div class="card-body p-4 d-flex flex-column justify-content-between">
+                    <div>
+                      <h4 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-award"></i>
+                        Bootstrap 5.3 の主要更新
+                      </h4>
+                      <ul class="list-unstyled d-flex flex-column gap-2 mb-0 opacity-90">
+                        <li class="d-flex align-items-start gap-2">
+                          <i class="bi bi-check-circle-fill mt-1"></i>
+                          <span><strong>ダークモード対応:</strong> 標準でライト/ダークの両テーマを完全サポート。</span>
+                        </li>
+                        <li class="d-flex align-items-start gap-2">
+                          <i class="bi bi-check-circle-fill mt-1"></i>
+                          <span><strong>CSS変数の拡張:</strong> 色、フォント、間隔などのカスタマイズ性が劇的に向上。</span>
+                        </li>
+                        <li class="d-flex align-items-start gap-2">
+                          <i class="bi bi-check-circle-fill mt-1"></i>
+                          <span><strong>新しいヘルパー/ユーティリティ:</strong> <code>object-fit</code>や新しいカラーリンクなど。</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-white-10 d-flex justify-content-between align-items-center">
+                      <span class="fs-7 text-white-50">バージョン: v5.3.3</span>
+                      <a href="#color-modes" class="btn btn-sm btn-light rounded-pill px-3 fw-bold">さっそく見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 2: Color Modes -->
+          <section id="color-modes" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-palette text-primary me-2"></i>カラーモード <span class="badge bg-primary fs-7">5.3 新機能</span>
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">Bootstrap 5.3で最も待ち望まれていた「カラーモード（ダークモード）」を標準サポート。<code>data-bs-theme</code> 属性を切り替えることで、アプリ全体の配色を瞬時に切り替え可能です。</p>
+
+            <div class="row g-4 mt-2">
+              <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100" data-bs-theme="light">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold d-flex justify-content-between align-items-center mb-3">
+                      ライトモード強制
+                      <span class="badge bg-light text-dark border">Light Forced</span>
+                    </h5>
+                    <p class="card-text text-body-secondary">このカードは全体のカラー設定にかかわらず、常に <code>data-bs-theme="light"</code> に固定されています。</p>
+                    <div class="p-3 bg-body-secondary rounded-3 text-center border">
+                      <span class="text-body">ライトの背景と文字</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100" data-bs-theme="dark">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold d-flex justify-content-between align-items-center mb-3">
+                      ダークモード強制
+                      <span class="badge bg-dark text-white border border-secondary">Dark Forced</span>
+                    </h5>
+                    <p class="card-text text-body-secondary">このカードは全体のカラー設定にかかわらず、常に <code>data-bs-theme="dark"</code> に固定されています。</p>
+                    <div class="p-3 bg-body-secondary rounded-3 text-center border border-secondary">
+                      <span class="text-body">ダークの背景と文字</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold d-flex justify-content-between align-items-center mb-3">
+                      テーマ連動
+                      <span class="badge bg-primary">Responsive</span>
+                    </h5>
+                    <p class="card-text text-body-secondary">このカードはアプリ全体のテーマ設定（上部のトグル）に完全に連動して変化します。</p>
+                    <div class="p-3 bg-body-secondary rounded-3 text-center border">
+                      <span class="text-body">全体のテーマに連動</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- New utility colors in 5.3 -->
+            <div class="card border-0 shadow-sm rounded-4 mt-4">
+              <div class="card-body p-4">
+                <h5 class="fw-bold mb-3">5.3で追加された新しいセマンティックカラー・ユーティリティ</h5>
+                <p class="text-body-secondary">ダークモード時の視認性を高めるため、半透明 of 背景クラス（<code>*-subtle</code>）や、コンテキストテキストカラー（<code>text-*-emphasis</code>）が多数追加されました。</p>
+                
+                <div class="row g-3">
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="p-3 bg-primary-subtle text-primary-emphasis border border-primary-subtle rounded-3 text-center fw-medium">
+                      Primary Subtle
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="p-3 bg-success-subtle text-success-emphasis border border-success-subtle rounded-3 text-center fw-medium">
+                      Success Subtle
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="p-3 bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-3 text-center fw-medium">
+                      Warning Subtle
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="p-3 bg-danger-subtle text-danger-emphasis border border-danger-subtle rounded-3 text-center fw-medium">
+                      Danger Subtle
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 3: Layout & Grid -->
+          <section id="grid-layout" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-grid-3x3-gap text-primary me-2"></i>レイアウト & グリッド
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">Bootstrapの代名詞である強力な12カラムのモバイルファースト・グリッドシステム。フレックスボックスをベースとしたアライメントや、隙間（Gutters）の管理デモです。</p>
+
+            <!-- Responsive Grid visualization -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+              <div class="card-body p-4">
+                <h5 class="fw-bold mb-3">レスポンシブグリッド (Responsive Grid)</h5>
+                <p class="text-body-secondary">画面幅に応じて自動的にカラム数が変わる設計。各ブロックのサイズ（<code>col-md-4</code> 等）が視覚的にわかります。</p>
+                
+                <div class="row g-3 text-center font-monospace">
+                  <div class="col-12">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-12 (全幅)</div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-md-6 (画面半分)</div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-md-6 (画面半分)</div>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-lg-4 col-md-6</div>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-lg-4 col-md-6</div>
+                  </div>
+                  <div class="col-lg-4 col-12">
+                    <div class="p-3 bg-secondary-subtle border rounded-3">col-lg-4 col-12</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alignment Control -->
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">垂直方向の整列 (Vertical Alignment)</h5>
+                    <p class="text-body-secondary"><code>.align-items-*</code> クラスを使用して、高さの異なる要素を垂直方向に整列させます。</p>
+                    
+                    <div class="bg-body-secondary rounded-3 border p-3" style="height: 150px;">
+                      <div class="row align-items-center h-100 g-2 text-center text-white">
+                        <div class="col-4"><div class="bg-primary py-3 rounded-2 shadow-sm">中央揃え</div></div>
+                        <div class="col-4"><div class="bg-primary py-3 rounded-2 shadow-sm">align-items</div></div>
+                        <div class="col-4"><div class="bg-primary py-3 rounded-2 shadow-sm">center</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">ギャップコントロール (Gutters)</h5>
+                    <p class="text-body-secondary"><code>.g-*</code> クラスを使用して、カラム間のマージン（隙間）を制御します。</p>
+                    
+                    <div class="row g-4 text-center">
+                      <div class="col-6"><div class="bg-info-subtle border border-info text-info-emphasis py-3 rounded-3 fw-bold">g-4</div></div>
+                      <div class="col-6"><div class="bg-info-subtle border border-info text-info-emphasis py-3 rounded-3 fw-bold">カラム 1</div></div>
+                      <div class="col-6"><div class="bg-info-subtle border border-info text-info-emphasis py-3 rounded-3 fw-bold">カラム 2</div></div>
+                      <div class="col-6"><div class="bg-info-subtle border border-info text-info-emphasis py-3 rounded-3 fw-bold">カラム 3</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 4: Forms -->
+          <section id="forms" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-input-cursor-text text-primary me-2"></i>フォーム & 検証
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">Bootstrap 5の高度なフォームコンポーネント。フローティングラベル、高度な入力検証（バリデーション）、スイッチやレンジ入力などを備えたデモです。</p>
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+              <div class="card-body p-4">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                  <i class="bi bi-check-all text-success"></i>
+                  リアルタイムバリデーション付きフォーム
+                </h5>
+                <p class="text-body-secondary">送信時に入力内容をチェックします（ブラウザ標準およびBootstrapのデザインを適用）。</p>
+
+                <form class="row g-3 needs-validation" novalidate id="demoForm">
+                  <!-- Name Input (Floating Labels) -->
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-placeholder form-control" id="validationName" placeholder="山田 太郎" required>
+                      <label for="validationName">お名前（必須）</label>
+                      <div class="valid-feedback">バッチリです！</div>
+                      <div class="invalid-feedback">名前を入力してください。</div>
+                    </div>
+                  </div>
+
+                  <!-- Email Input (Floating Labels) -->
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="email" class="form-placeholder form-control" id="validationEmail" placeholder="name@example.com" required>
+                      <label for="validationEmail">メールアドレス（必須）</label>
+                      <div class="valid-feedback">正常なアドレス形式です。</div>
+                      <div class="invalid-feedback">正しいメールアドレスを入力してください。</div>
+                    </div>
+                  </div>
+
+                  <!-- Dropdown Select -->
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <select class="form-select" id="validationJob" required>
+                        <option selected disabled value="">選択してください...</option>
+                        <option>エンジニア</option>
+                        <option>デザイナー</option>
+                        <option>ディレクター</option>
+                        <option>その他</option>
+                      </select>
+                      <label for="validationJob">職種</label>
+                      <div class="invalid-feedback">職種を選択してください。</div>
+                    </div>
+                  </div>
+
+                  <!-- Color Picker & File Input -->
+                  <div class="col-md-6">
+                    <div class="row g-2">
+                      <div class="col-4">
+                        <label for="favColor" class="form-label fs-7 fw-medium mb-1">テーマ色</label>
+                        <input type="color" class="form-control form-control-color w-100 rounded-3" id="favColor" value="#0d6efd" title="Choose your color">
+                      </div>
+                      <div class="col-8">
+                        <label for="formFile" class="form-label fs-7 fw-medium mb-1">アバター画像</label>
+                        <input class="form-control" type="file" id="formFile">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Custom Swtiches & Radios -->
+                  <div class="col-12 my-3">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="newsletterSwitch" checked>
+                          <label class="form-check-input-placeholder form-check-label" for="newsletterSwitch">ニュースレターを購読する</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="d-flex gap-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contactRadio" id="radioEmail" checked>
+                            <label class="form-check-label" for="radioEmail">メール連絡</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contactRadio" id="radioPhone">
+                            <label class="form-check-label" for="radioPhone">電話連絡</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Terms Agreement Check -->
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                      <label class="form-check-label text-body-secondary" for="invalidCheck">
+                        利用規約およびプライバシーポリシーに同意します。
+                      </label>
+                      <div class="invalid-feedback">送信するには同意が必要です。</div>
+                    </div>
+                  </div>
+
+                  <!-- Submit button -->
+                  <div class="col-12">
+                    <button class="btn btn-primary px-4 py-2 rounded-pill fw-bold" type="submit">フォーム送信</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 5: Basic Components -->
+          <section id="basic-components" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-menu-button-wide text-primary me-2"></i>基本コンポーネント
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">Bootstrapが提供する最も基本的なUIコンポーネントです。HTMLのマークアップとCSSクラスだけで、洗練されたデザインを実現できます。</p>
+
+            <div class="row g-4">
+              <!-- Accordion -->
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-chevron-down text-primary"></i>
+                      アコーディオン (Accordion)
+                    </h5>
+                    
+                    <div class="accordion" id="accordionExample">
+                      <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            アコーディオン アイテム #1
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                          <div class="accordion-body text-body-secondary">
+                            アコーディオンの中身です。親のコラップスコンポーネントと組み合わせて排他制御が行われます。CSSのトランジションアニメーションで滑らかに開閉します。
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            アコーディオン アイテム #2
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                          <div class="accordion-body text-body-secondary">
+                            Bootstrap 5.3 ではダークモードでも美しく調和するよう、アコーディオンの背景色やアイコンの配色が自動調整されています。
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- List Group & Pagination -->
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4 d-flex flex-column justify-content-between">
+                    <div>
+                      <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-list-task text-primary"></i>
+                        リストグループ & バッジ
+                      </h5>
+                      <ul class="list-group list-group-flush rounded-3 border-0">
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 border-bottom py-2.5">
+                          <span class="fw-medium text-body">アクティブなタスク</span>
+                          <span class="badge bg-primary rounded-pill">14 件</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 border-bottom py-2.5">
+                          <span class="fw-medium text-body">完了した案件</span>
+                          <span class="badge bg-success rounded-pill">32 件</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 py-2.5">
+                          <span class="fw-medium text-body">エラー通知</span>
+                          <span class="badge bg-danger rounded-pill">1 件</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top">
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-sm m-0 justify-content-center">
+                          <li class="page-item disabled"><a class="page-link" href="#">前へ</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">次へ</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Placeholders, Alerts, Badges, Progress & Spinners in a card -->
+            <div class="card border-0 shadow-sm rounded-4 mt-4">
+              <div class="card-body p-4">
+                <div class="row g-4">
+                  <!-- Placeholders (Skeleton Load) -->
+                  <div class="col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-file-earmark-bar-graph"></i>プレースホルダー
+                    </h6>
+                    <div class="placeholder-glow">
+                      <span class="placeholder col-6 rounded-pill bg-secondary mb-2"></span>
+                      <span class="placeholder col-12 rounded-pill bg-secondary mb-2"></span>
+                      <span class="placeholder col-8 rounded-pill bg-secondary"></span>
+                    </div>
+                  </div>
+
+                  <!-- Alert & Badge -->
+                  <div class="col-md-6 col-lg-5">
+                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-exclamation-triangle"></i>アラート & バッジ
+                    </h6>
+                    <div class="alert alert-warning alert-dismissible fade show rounded-3 p-3 border-0 shadow-sm fs-7 mb-0" role="alert">
+                      <strong>注意:</strong> セッションは残りわずかです。
+                      <span class="badge bg-danger rounded-pill ms-1">緊急</span>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!-- Progress & Spinner -->
+                  <div class="col-md-12 col-lg-4">
+                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-hourglass-split"></i>進捗バー & スピナー
+                    </h6>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="flex-grow-1">
+                        <div class="progress rounded-pill shadow-sm" style="height: 12px;">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-border spinner-border-sm text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow spinner-grow-sm text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Premium Cards (Visual Excellence) -->
+            <div class="row g-4 mt-2">
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover-effect">
+                  <img src="./carousel_tech.png" class="card-img-top object-fit-cover" style="height: 200px;" alt="Technology mockup">
+                  <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="text-primary fw-bold text-uppercase fs-8 tracking-wider">Design System</span>
+                      <span class="fs-7 text-body-secondary"><i class="bi bi-clock me-1"></i>3分前</span>
+                    </div>
+                    <h4 class="card-title fw-bold">プレミアムカードデモ</h4>
+                    <p class="card-text text-body-secondary">ホバーアニメーションや影（シャドウ）、アスペクト比固定の画像（<code>object-fit-cover</code>）を使用した美しいカードデザインです。</p>
+                    <a href="#" class="btn btn-outline-primary rounded-pill px-4 btn-sm fw-bold">詳しく読む</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover-effect">
+                  <img src="./carousel_dashboard.png" class="card-img-top object-fit-cover" style="height: 200px;" alt="Dashboard mockup">
+                  <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="text-success fw-bold text-uppercase fs-8 tracking-wider">Analytics</span>
+                      <span class="fs-7 text-body-secondary"><i class="bi bi-clock me-1"></i>1時間前</span>
+                    </div>
+                    <h4 class="card-title fw-bold">ダッシュボードインターフェース</h4>
+                    <p class="card-text text-body-secondary">Bootstrapのフレックスボックスやコンテキストカラーを活用して、プレミアムな体験をユーザーに提供します。</p>
+                    <a href="#" class="btn btn-outline-success rounded-pill px-4 btn-sm fw-bold">分析を開く</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 6: Interactive Components -->
+          <section id="interactive-components" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-lightning-charge text-primary me-2"></i>JSコンポーネント (JavaScript Plugins)
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">JavaScriptプラグインを組み合わせることで実現する、高度にインタラクティブな機能。モーダル、オフキャンバス、カルーセル、トースト、ツールチップなどのデモをその場で試せます。</p>
+
+            <div class="row g-4">
+              <!-- Carousel -->
+              <div class="col-xl-7">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-images text-primary"></i>
+                      カルーセル (Carousel)
+                    </h5>
+                    
+                    <div id="demoCarousel" class="carousel slide carousel-fade shadow-sm rounded-3 overflow-hidden" data-bs-ride="carousel">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="4000">
+                          <img src="./carousel_tech.png" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
+                          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5 class="fw-bold text-white">デジタルテクノロジー</h5>
+                            <p class="m-0 text-white-50">最先端のテクノロジーとグラフィックスの融合。</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="4000">
+                          <img src="./carousel_fluid.png" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
+                          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5 class="fw-bold text-white">3D アブストラクト</h5>
+                            <p class="m-0 text-white-50">美しい流体グラデーションのアートワーク。</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="4000">
+                          <img src="./carousel_dashboard.png" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
+                          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5 class="fw-bold text-white">ダッシュボード</h5>
+                            <p class="m-0 text-white-50">プレミアムで美しいインタフェース設計。</p>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#demoCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#demoCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Overlays (Modal, Offcanvas, Popover, Tooltip, Toast) -->
+              <div class="col-xl-5">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4 d-flex flex-column justify-content-between">
+                    <div>
+                      <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-window-stack text-primary"></i>
+                        オーバーレイ & ダイアログ
+                      </h5>
+                      <p class="text-body-secondary mb-4">モーダルやツールチップ、トーストなどのJSプラグイン。以下のボタンでそれぞれの動きを確認できます。</p>
+                      
+                      <div class="d-grid gap-2">
+                        <!-- Modal Trigger -->
+                        <button class="btn btn-outline-primary text-start rounded-3 px-3 py-2 fw-medium d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#welcomeModal">
+                          <span><i class="bi bi-box-arrow-in-up-right me-2"></i>モーダルを開く</span>
+                          <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill">Modal</span>
+                        </button>
+                        
+                        <!-- Offcanvas Trigger -->
+                        <button class="btn btn-outline-success text-start rounded-3 px-3 py-2 fw-medium d-flex align-items-center justify-content-between" type="button" data-bs-toggle="offcanvas" data-bs-target="#demoOffcanvas" aria-controls="demoOffcanvas">
+                          <span><i class="bi bi-layout-sidebar-reverse me-2"></i>オフキャンバスを開く</span>
+                          <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Offcanvas</span>
+                        </button>
+
+                        <!-- Dynamic Toast Trigger -->
+                        <button class="btn btn-outline-warning text-start rounded-3 px-3 py-2 fw-medium d-flex align-items-center justify-content-between" type="button" id="triggerToast">
+                          <span><i class="bi bi-bell-fill me-2"></i>トースト通知を送信</span>
+                          <span class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill">Toast</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Tooltip & Popover Inline Demo -->
+                    <div class="mt-4 pt-3 border-top">
+                      <h6 class="fw-bold mb-2 fs-7">ツールチップ & ポップオーバー</h6>
+                      <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <button type="button" class="btn btn-sm btn-secondary rounded-pill px-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="これは上部のツールチップです">
+                          ホバーしてTooltip
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary rounded-pill px-3" data-bs-toggle="popover" data-bs-title="ポップオーバーのタイトル" data-bs-content="ここに詳細なコンテンツが表示されます。クリックすると開閉します。" data-bs-placement="right">
+                          クリックしてPopover
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-5 opacity-10">
+
+          <!-- SECTION 7: Helpers & Utilities -->
+          <section id="helpers-utilities" class="mb-5 scroll-mt">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="fw-extrabold m-0 font-outfit">
+                <i class="bi bi-sliders text-primary me-2"></i>ヘルパー & ユーティリティ
+              </h2>
+            </div>
+            
+            <p class="lead text-body-secondary">複雑なCSSを書くことなく、クラス名を追加するだけで画像アスペクト比の維持、要素全体へのリンク付与、文字列の省略などを行える便利な機能のデモです。</p>
+
+            <div class="row g-4">
+              <!-- Ratio Helper -->
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-aspect-ratio text-primary"></i>
+                      アスペクト比維持 (Ratio)
+                    </h5>
+                    <p class="text-body-secondary"><code>.ratio</code> と <code>.ratio-16x9</code> を使って、画面幅に関わらずアスペクト比を16:9に固定して埋め込みを行います。</p>
+                    
+                    <div class="ratio ratio-16x9 rounded-3 overflow-hidden border shadow-sm">
+                      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="YouTube video" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stretched Link & Text Truncation -->
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100 d-flex flex-column justify-content-between">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                      <i class="bi bi-link-45deg text-primary"></i>
+                      Stretched Link（親要素全体のリンク化）
+                    </h5>
+                    <p class="text-body-secondary">カード全体をクリック可能にできます。中のリンクに <code>.stretched-link</code> を付与します。</p>
+                    
+                    <div class="card bg-body-tertiary border rounded-3 position-relative p-3 mb-4 shadow-sm-hover transition-all">
+                      <h6 class="fw-bold">このカード全体がクリック可能</h6>
+                      <p class="fs-7 text-body-secondary mb-2">下のリンクに <code>.stretched-link</code> が入っているため、どこを触っても機能します。</p>
+                      <a href="#" class="stretched-link fw-bold fs-7">ダミーリンク</a>
+                    </div>
+
+                    <h5 class="fw-bold mb-2 d-flex align-items-center gap-2">
+                      <i class="bi bi-body-text text-primary"></i>
+                      テキスト省略 (Text Truncation)
+                    </h5>
+                    <p class="text-body-secondary mb-1">長文を1行に収めて自動的に <code>...</code> で省略表示します。</p>
+                    <div class="p-2.5 bg-body-tertiary border rounded-3 text-truncate font-monospace fs-7 text-body-secondary">
+                      この文章は非常に長いため、画面幅に収まらなくなった場合は自動的に三点リーダーで省略されます。
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="pt-5 pb-3 border-top mt-5 text-center text-body-secondary">
+            <p>© 2026 Hiromi Takahashi - Built with Bootstrap 5.3.</p>
+          </footer>
+
+        </main>
+      </div>
+    </div>
+
+    <!-- MODALS & OFFCANVAS (Dynamic Elements) -->
+
+    <!-- Welcome Modal -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+          <div class="modal-header border-bottom-0 pb-0">
+            <h5 class="modal-title fw-bold" id="welcomeModalLabel">Bootstrap 5.3 Ultimate について</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body py-4">
+            <p>このアプリケーションは、Bootstrap 5.3.3 の持つ主要機能をビジュアルに体験するためのデモアプリです。</p>
+            <h6 class="fw-bold mb-2">検証可能な機能:</h6>
+            <ul class="list-unstyled d-flex flex-column gap-2 mb-0 text-body-secondary fs-7">
+              <li class="d-flex align-items-center gap-2">
+                <i class="bi bi-check2 text-success"></i>ダークモード / カラーモード (`data-bs-theme="dark"`)
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <i class="bi bi-check2 text-success"></i>拡張されたCSS変数 (プライマリ色/角丸の動的変更)
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <i class="bi bi-check2 text-success"></i>インタラクティブなJSプラグイン (モーダル、トースト、ツールチップ)
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <i class="bi bi-check2 text-success"></i>レスポンシブグリッド & フォームバリデーション
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">閉じる</button>
+            <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">了解しました</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Offcanvas (Right alignment) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="demoOffcanvas" aria-labelledby="demoOffcanvasLabel">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold" id="demoOffcanvasLabel">デモ用オフキャンバス</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          オフキャンバス要素は、画面の端からスライドインするナビゲーションやサイドバーに適しています。
+          左右上下すべての方向からの登場に対応しています。
+        </div>
+        <div class="mt-4">
+          <h6>サンプル設定:</h6>
+          <div class="p-3 bg-body-tertiary rounded border fs-7">
+            <code>id="demoOffcanvas"</code><br>
+            <code>class="offcanvas offcanvas-end"</code>
+          </div>
+        </div>
+        <button class="btn btn-primary w-100 rounded-pill mt-4" data-bs-dismiss="offcanvas">閉じる</button>
+      </div>
+    </div>
+
+    <!-- Toast Container (Toaster position: Top-Right) -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer" style="z-index: 1085;">
+      <!-- Dynamic toasts will be appended here via JS -->
+    </div>
+
+    <!-- Bootstrap Bundle with Popper CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom Application Logic -->
+    <script src="main.js"></script>
+  </body>
+</html>

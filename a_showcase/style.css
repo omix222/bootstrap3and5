@@ -1,0 +1,159 @@
+/* ----------------------------------------------------
+  Bootstrap 5.3 Showcase Custom Styles
+---------------------------------------------------- */
+
+:root {
+  /* Dynamic Hue control for CSS variables demo */
+  --primary-hue: 250;
+  --custom-primary-color: hsl(var(--primary-hue), 85%, 55%);
+  --custom-primary-hover: hsl(var(--primary-hue), 85%, 45%);
+  --custom-primary-active: hsl(var(--primary-hue), 85%, 40%);
+  --custom-primary-subtle: hsl(var(--primary-hue), 85%, 95%);
+  
+  /* Border radius dynamic control */
+  --custom-border-radius: 0.5rem;
+}
+
+/* Dark mode fallback for custom sub colors */
+[data-bs-theme="dark"] {
+  --custom-primary-subtle: hsl(var(--primary-hue), 30%, 15%);
+}
+
+/* Global Font Override */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, .font-outfit {
+  font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+}
+
+/* Apply CSS Variables dynamically in demo */
+.btn-primary, .btn-outline-primary:hover {
+  --bs-btn-bg: var(--custom-primary-color);
+  --bs-btn-border-color: var(--custom-primary-color);
+  --bs-btn-hover-bg: var(--custom-primary-hover);
+  --bs-btn-hover-border-color: var(--custom-primary-hover);
+  --bs-btn-active-bg: var(--custom-primary-active);
+  --bs-btn-active-border-color: var(--custom-primary-active);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--custom-primary-color);
+  --bs-btn-border-color: var(--custom-primary-color);
+  --bs-btn-hover-bg: var(--custom-primary-color);
+}
+
+.text-primary, .text-gradient {
+  color: var(--custom-primary-color) !important;
+}
+
+.badge.bg-primary {
+  background-color: var(--custom-primary-color) !important;
+}
+
+.alert-primary {
+  background-color: var(--custom-primary-subtle) !important;
+  color: var(--custom-primary-color) !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--custom-primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Apply Border Radius dynamically */
+.card, .btn, .alert, .form-control, .form-select, .accordion-item, .list-group {
+  border-radius: var(--custom-border-radius) !important;
+}
+
+.rounded-3 {
+  border-radius: calc(var(--custom-border-radius) * 1.5) !important;
+}
+
+.rounded-4 {
+  border-radius: calc(var(--custom-border-radius) * 2.2) !important;
+}
+
+/* Design Aesthetics: Premium Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, var(--custom-primary-color) 0%, #d63384 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.jumbotron-gradient {
+  background: linear-gradient(135deg, var(--custom-primary-color) 0%, #6f42c1 100%) !important;
+}
+
+.card-gradient-primary {
+  background: linear-gradient(135deg, var(--custom-primary-color) 0%, #4f2bb7 100%) !important;
+}
+
+/* Smooth layout & navigation settings */
+.sticky-sidebar {
+  position: sticky;
+  top: 76px; /* Header height + buffer */
+  height: calc(100vh - 76px);
+  overflow-y: auto;
+}
+
+.scroll-mt {
+  scroll-margin-top: 85px; /* Offset for header sticky positioning */
+}
+
+/* Premium Card hover effects */
+.card-hover-effect {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-bs-theme="dark"] .card-hover-effect:hover {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Custom scrollbars for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.4);
+}
+
+/* Micro-animations */
+.hover-up {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-up:hover {
+  transform: translateY(-2px);
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Custom shadow utilities */
+.shadow-sm-hover {
+  transition: box-shadow 0.2s ease;
+}
+
+.shadow-sm-hover:hover {
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
